@@ -1,0 +1,86 @@
+.form-radio {
+    display: inline-block;
+    position: relative;
+    padding-left: 4.7rem;
+    // padding-top: 0.25em;
+    min-height: 2.4rem;
+    cursor: pointer;
+    user-select: none;
+    font-size: 1.6rem;
+    line-height: 1.44;
+    color: $primary-dark-purple;
+    opacity: 0.9;
+
+    input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+    }
+
+    .form-radio__checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 2.4rem;
+        width: 2.4rem;
+        border-radius: 50%;
+        overflow: hidden;
+        border: solid 1px $primary-dark-purple;
+
+        &:after {
+            content: '';
+            display: block;
+            @include sheet;
+            opacity: 0;
+            transition: opacity $trans;
+            @include background-contain;
+            @include image('icons/radio-checked.svg');
+        }
+    }
+
+    input:checked ~ .form-radio__checkmark:after {
+        opacity: 1;
+    }
+
+    &--underline {
+        padding: 0 0.3rem;
+        font-size: 2.4rem;
+        min-height: auto;
+        line-height: 1.2;
+
+        @include mobile {
+            font-size: 2rem;
+
+            &::before {
+                content: '';
+                display: block;
+                position: absolute;
+                width: 150%;
+                height: 150%;
+                transform: translate(-25%, -25%);
+            }
+        }
+
+        .form-radio__checkmark {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            top: auto;
+            height: 2px;
+            width: 100%;
+            border-radius: 0;
+            border: none;
+
+            &:after {
+                content: '';
+                display: block;
+                @include sheet;
+                opacity: 0;
+                transition: opacity $trans;
+                background-color: $primary-dark-purple;
+            }
+        }
+    }
+}

@@ -1,0 +1,55 @@
+.compass {
+    display: inline-block;
+    padding: 1rem;
+    @include mobile {
+        padding: 0.5rem;
+    }
+    &__inner {
+        width: 5.9rem;
+        height: 5.9rem;
+        padding: 0.5rem;
+        font-size: 0;
+        position: relative;
+        @include mobile {
+            width: 4.5rem;
+            height: 4.5rem;
+        }
+
+        svg {
+            width: 100%;
+            height: auto;
+        }
+    }
+
+    &__direction {
+        position: absolute;
+        font-size: 1rem;
+        font-weight: 500;
+        color: $primary-dark-purple;
+        @include mobile {
+            font-size: 0.7rem;
+        }
+
+        &--n {
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -100%);
+        }
+        &--s {
+            bottom: 0;
+            left: 50%;
+            transform: translate(-50%, 100%);
+        }
+
+        &--w {
+            top: 50%;
+            left: 0;
+            transform: translate(-100%, -50%);
+        }
+        &--e {
+            top: 50%;
+            right: 0;
+            transform: translate(100%, -50%);
+        }
+    }
+}

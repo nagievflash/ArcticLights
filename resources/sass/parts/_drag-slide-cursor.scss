@@ -1,0 +1,35 @@
+.drag-slide-cursor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 8rem;
+    height: 4.8rem;
+    position: fixed;
+    margin-left: -4rem;
+    margin-top: -2.4rem;
+    transform: scale(0);
+    z-index: 10;
+    opacity: 0;
+    transition: transform 150ms ease-in-out, opacity 150ms ease-in-out;
+    pointer-events: none;
+
+    @include mobile {
+        display: none;
+    }
+
+    &.isVisible {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    svg {
+        width: 100%;
+        height: 100%;
+    }
+
+    &--mouseDown {
+        .drag-slide-cursor {
+            transform: scale(0.8);
+        }
+    }
+}

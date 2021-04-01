@@ -1,0 +1,57 @@
+.employee-form {
+    background: $light-blue;
+
+    &__wrapper {
+        width: 100%;
+        max-width: 82.6rem;
+        margin: 0 auto;
+        padding: 14.7rem 13rem 5rem;
+        background: #fff;
+        min-height: calc(100vh - 59.5rem);
+    }
+    &__information {
+        text-align: center;
+        margin-bottom: 5.6rem;
+        color: $primary-dark-purple;
+    }
+
+    p {
+        margin: 2rem 0;
+    }
+    .form__control + .form__control {
+        margin-top: 7.7rem;
+    }
+    .form__control--m {
+        width: 26rem;
+    }
+    .disclaymer {
+        font-size: 1.4rem;
+        color: $primary-dark-purple;
+    }
+    .contacts__slide-footer .button {
+        margin-right: auto;
+        min-width: 12rem;
+        justify-content: center;
+    }
+    @include mobile {
+        &__wrapper {
+            padding: 12.8rem 2rem 5rem;
+        }
+        &__information {
+            margin-bottom: 7rem;
+        }
+        .form__control + .form__control {
+            margin-top: 5.6rem;
+        }
+        .form__control--m {
+            width: 100%;
+        }
+        .contacts__slide-footer .button {
+            margin-right: auto;
+            margin-left: auto;
+        }
+    }
+    .form__success {
+        position: static;
+    }
+}

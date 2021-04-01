@@ -1,0 +1,36 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box !important;
+}
+
+* {
+    @include selection {
+        background-color: $primary-dark-purple;
+        color: $white;
+    }
+}
+
+html {
+    font-size: calc((100 / 1440) * 10vw);
+    @include mobile {
+        font-size: calc((100 / 375) * 10vw);
+    }
+
+    @include desktop-1 {
+        font-size: 0.56vw;
+    }
+
+    @include desktop-2 {
+        font-size: 0.48vw;
+    }
+}
+
+body {
+    font-family: $font-base;
+    font-weight: 400;
+    font-size: 1.8rem;
+}
+
+main {
+}

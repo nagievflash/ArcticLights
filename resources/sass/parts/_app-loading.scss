@@ -1,0 +1,13 @@
+.app-loading {
+    opacity: 0;
+
+    h1.heading {
+        opacity: 0 !important;
+    }
+
+    .cookie--intro {
+        .cookie__body {
+            opacity: 0;
+        }
+    }
+}

@@ -1,0 +1,196 @@
+.text-block {
+    font-size: 1.8rem;
+    line-height: 1.44;
+    @include mobile {
+        font-size: 1.6rem;
+        line-height: 1.6;
+    }
+
+    &--s {
+        font-size: 1.6rem;
+        line-height: 1.5;
+        @include mobile {
+            font-size: 1.4rem;
+            line-height: 1.43;
+        }
+    }
+
+    &--xs {
+        font-size: 1.4rem;
+    }
+
+    &--white {
+        color: $white;
+    }
+    &--dark {
+        color: $primary-dark-purple;
+    }
+    &--fadeOut {
+        opacity: 0.6;
+    }
+
+    p {
+        + p {
+            margin-top: 3rem;
+
+            @include mobile {
+                margin-top: 2rem;
+            }
+        }
+        + ul,
+        + ol,
+        + table {
+            margin-top: 6rem;
+            @include mobile {
+                margin-top: 4rem;
+            }
+        }
+
+        img {
+            height: 1em;
+            width: auto;
+        }
+    }
+
+    ul {
+        + p,
+        + table {
+            margin-top: 6rem;
+            @include mobile {
+                margin-top: 4rem;
+            }
+        }
+    }
+    p,
+    ul {
+        + h1 {
+            margin-top: 10rem;
+            @include mobile {
+                margin-top: 4rem;
+            }
+        }
+        + h2 {
+            margin-top: 8rem;
+            @include mobile {
+                margin-top: 4rem;
+            }
+        }
+        + h3,
+        + h4,
+        + h5,
+        + h6 {
+            margin-top: 4rem;
+            @include mobile {
+                margin-top: 4rem;
+            }
+        }
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        + p,
+        + table {
+            margin-top: 2.5rem;
+            @include mobile {
+                margin-top: 1.5rem;
+            }
+        }
+
+        + ul {
+            margin-top: 2.5rem;
+            @include mobile {
+                margin-top: 1.5rem;
+            }
+        }
+    }
+
+    h1 {
+        font-size: 4.5rem;
+        line-height: 1.11;
+        font-weight: 400;
+
+        @include mobile {
+            font-size: 3.2rem;
+            line-height: 1.19;
+        }
+    }
+
+    h2 {
+        font-size: 3.4rem;
+        line-height: 1.18;
+        font-weight: 400;
+
+        @include mobile {
+            font-size: 2.4rem;
+            line-height: 1.25;
+        }
+    }
+
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-size: 2.2rem;
+        line-height: 1.14;
+        font-weight: 400;
+        @include mobile {
+            font-size: 1.8rem;
+            line-height: 1.44;
+        }
+    }
+    ul {
+        li {
+            position: relative;
+            padding-left: 2.9rem;
+
+            &:not(:last-of-type) {
+                margin-bottom: 2rem;
+            }
+
+            &:before {
+                content: '';
+                display: block;
+                width: 0.9rem;
+                height: 0.9rem;
+                border-radius: 50%;
+                left: 0;
+                top: 0.35em;
+                background-color: #e3d4f1;
+                position: absolute;
+            }
+        }
+    }
+
+    table {
+        width: 100%;
+        td {
+            padding: 1rem;
+            border: 1px solid rgba($primary-dark-purple, 0.16);
+        }
+
+        th {
+            background-color: $primary-dark-purple;
+            color: $white;
+        }
+    }
+
+    table {
+        + p,
+        + ol,
+        + ul,
+        + h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            margin-top: 6rem;
+            @include mobile {
+                margin-top: 4rem;
+            }
+        }
+    }
+}

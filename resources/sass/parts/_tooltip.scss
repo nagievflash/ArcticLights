@@ -1,0 +1,354 @@
+.tooltip {
+    &--finished {
+        display: inline-flex;
+        background-color: $primary-blue;
+        padding: 3.1rem 3.1rem 3.1rem 6.5rem;
+
+        .list__item {
+            width: 12rem;
+            &:not(:first-of-type) {
+                margin-left: 0.6rem;
+            }
+        }
+
+        .tooltip__label {
+            margin-bottom: 0.7rem;
+        }
+    }
+
+    &--planned {
+        width: 28rem;
+        padding: 2.5rem 3rem 2.5rem 6.5rem;
+        background-color: $primary-dark-purple;
+
+        .tooltip__label,
+        .tooltip__value {
+            color: $white;
+        }
+
+        .tooltip__label {
+            margin-bottom: 0.7rem;
+        }
+        .tooltip__title {
+            margin-bottom: 1rem;
+        }
+    }
+
+    &--favorites {
+        display: inline-flex;
+        padding: 2.3rem 2.6rem;
+        position: absolute;
+        bottom: 0;
+        right: 5.6rem;
+        transform: translateY(100%);
+        box-shadow: 0 1rem 4rem 0 rgba(130, 180, 220, 0.2);
+        background-color: $white;
+        pointer-events: none;
+        animation: long-fade-in-out 3000ms forwards;
+        z-index: 99999;
+
+        .list__item {
+            display: flex;
+            align-items: center;
+
+            &:not(:first-of-type) {
+                align-items: flex-start;
+
+                padding-left: 2rem;
+                margin-left: 2rem;
+                border-left: solid 1px rgba($primary-dark-purple, 0.15);
+
+                .text-block {
+                    p {
+                        display: flex;
+                        align-items: center;
+
+                        &:before {
+                            content: '';
+                            display: inline-block;
+                            width: 1.3rem;
+                            height: 0.8rem;
+                            @include image('icons/checkbox-icon.svg');
+                            @include background-contain;
+                            margin-right: 1.4rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &--floor {
+        display: inline-flex;
+        // width: 40rem;
+        height: 12.5rem;
+        padding: 2.3rem 4rem 2.3rem 0;
+        background-color: $primary-blue;
+
+        @include mobile {
+            display: none;
+        }
+
+        .list__item {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            &:first-of-type {
+                width: 18.8rem;
+                margin-right: 3rem;
+                flex-shrink: 0;
+                border-right: 1px solid rgba($primary-dark-purple, 0.15);
+                padding-left: 2.3rem;
+                padding-right: 2.3rem;
+
+                .tooltip__value {
+                    font-size: 3.4rem;
+                    line-height: 1.18;
+                    font-weight: 400;
+                    padding-bottom: 0.5rem;
+                }
+
+                .tooltip__label {
+                    opacity: 1;
+                    font-size: 1.1rem;
+                    font-weight: 500;
+                    text-transform: uppercase;
+                    line-height: 1.09;
+                    letter-spacing: 0.09em;
+
+                    &.addition {
+                        text-align: center;
+                        margin: 0.7rem 0;
+                        text-decoration: none;
+                        font-size: 1rem;
+                    }
+                }
+            }
+            &:not(:first-of-type) {
+                align-items: flex-start;
+                width: 9rem;
+                padding-left: 1rem;
+                flex-direction: column;
+                justify-content: flex-start;
+
+                .tooltip__label {
+                    margin-bottom: 0.7rem;
+                }
+            }
+        }
+    }
+
+    &--list-row {
+        display: block;
+        width: 22rem;
+        // transform: translateX(-5px);
+        padding: 1.5rem 2rem;
+        box-shadow: 0 0.8rem 4rem 0 rgba(127, 161, 188, 0.36);
+        background-color: $white;
+        font-size: 0;
+        @include desktop-1 {
+            transform: translateX(25rem);
+        }
+        @include desktop-2 {
+            transform: translateX(39.8rem);
+        }
+
+        @include mobile {
+            display: none;
+        }
+
+        img {
+            width: 100%;
+            // height: 100%;
+            max-width: 18rem;
+            max-height: 18rem;
+            object-fit: contain;
+        }
+    }
+
+    &--text {
+        padding: 0.8rem 1.2rem;
+        background-color: $primary-dark-purple;
+        border-radius: 1.6rem;
+        span {
+            color: $white;
+            font-size: 1.3rem;
+        }
+    }
+
+    &--map-marker {
+        display: flex;
+        position: relative;
+        padding-left: 24.5rem;
+        background-color: $white;
+        @include mobile {
+            padding-left: 15rem;
+            height: 13rem;
+            width: 31.5rem;
+        }
+
+        .tooltip {
+            &__image {
+                height: 100%;
+                width: 24.5rem;
+                position: absolute;
+                top: 0;
+                left: 0;
+
+                @include mobile {
+                    width: 15rem;
+                }
+
+                img {
+                    @include imgCover;
+                }
+            }
+
+            &__content {
+                padding: 3.8rem 3.6rem 3.2rem 3.6rem;
+                @include mobile {
+                    padding: 2rem;
+                    display: flex;
+                    align-items: center;
+                }
+                .heading {
+                    margin-bottom: 1.5rem;
+                    @include mobile {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+
+            &__label {
+                @include mobile {
+                    display: none;
+                }
+            }
+
+            &__value {
+                margin-top: 0.7rem;
+                @include mobile {
+                    display: none;
+                }
+                + .tooltip__label {
+                    margin-top: 1rem;
+                }
+            }
+        }
+
+        &.living {
+            background-color: $primary-blue;
+        }
+
+        &.business {
+            background-color: $primary-purple;
+        }
+    }
+
+    &__title {
+        font-size: 1.6rem;
+        font-weight: 500;
+        line-height: 1.5;
+        color: $white;
+    }
+
+    &__label {
+        font-size: 1.4rem;
+        font-weight: normal;
+        line-height: 1.43;
+        color: $primary-dark-purple;
+        opacity: 0.4;
+    }
+
+    &__value {
+        font-size: 1.5rem;
+        font-weight: 500;
+        line-height: 1.33;
+        color: $primary-dark-purple;
+    }
+
+    .list {
+        display: flex;
+        width: 100%;
+    }
+}
+
+.tippy-popper {
+    .tippy-tooltip {
+        background-color: transparent;
+        border-radius: 0;
+        padding: 0;
+        overflow: visible;
+    }
+
+    .tippy-backdrop {
+        background: transparent !important;
+    }
+
+    &[x-placement='left'] {
+        .tippy-tooltip {
+            transform: translateX(0) !important;
+        }
+    }
+    .tippy-content {
+        padding: 0;
+    }
+}
+
+@keyframes long-fade-in-out {
+    0% {
+        opacity: 0;
+    }
+
+    25% {
+        opacity: 1;
+    }
+
+    75% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.gm-style .gm-ui-hover-effect {
+    // display: none !important;
+}
+
+.gm-style .gm-style-iw-t {
+    &::before,
+    &::after {
+        display: none;
+    }
+}
+
+.gm-style .gm-style-iw {
+    overflow: visible !important;
+    background-color: transparent;
+    padding: 0;
+    // transform: translate(-50%, -100%);
+    box-shadow: none;
+
+    @include mobile {
+        max-width: 31.5rem !important;
+    }
+
+    & > div {
+        // background-color: $primary-dark-purple;
+        max-width: none !important;
+        max-height: none !important;
+        display: block !important;
+        overflow: visible !important;
+        // animation: grow 0.3s ease-in-out;
+        transform-origin: bottom center;
+        box-shadow: none;
+
+        & > div {
+            overflow: visible !important;
+        }
+    }
+}

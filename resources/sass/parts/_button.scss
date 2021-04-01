@@ -1,0 +1,399 @@
+.button {
+    display: inline-flex;
+    align-self: flex-start;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    font-family: $font-base;
+    color: $primary-dark-purple;
+    font-size: 0;
+
+    &__text {
+        font-size: 1.1rem;
+        font-weight: 600;
+        line-height: 1.4;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+        pointer-events: none;
+        white-space: nowrap;
+        transform: translateZ(0);
+    }
+
+    &__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        pointer-events: none;
+
+        svg {
+            @include sheet;
+            backface-visibility: hidden;
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+    &--ic svg {
+        position: static;
+        fill: currentColor;
+        width: auto;
+        height: 1.6rem;
+        transition: opacity 0.3s ease-in-out;
+        margin-bottom: 0.3rem;
+    }
+
+    &--border,
+    &--border-icon-text,
+    &--white-border {
+        height: 4.8rem;
+        padding: 0 2.6rem;
+        padding-top: 0.3rem;
+        border-radius: 4.4rem;
+        border: solid 1px $primary-dark-purple;
+        transition: background $trans, color $trans;
+
+        @include desktop {
+            &:hover {
+                background-color: $primary-dark-purple;
+                color: $white;
+            }
+        }
+
+        .button__icon {
+            margin-right: 1.5rem;
+        }
+    }
+    &--white-border {
+        border-color: #fff;
+        color: #fff;
+        padding-top: 0;
+
+        @include desktop {
+            &:hover {
+                background-color: #fff;
+                color: #39145d;
+            }
+        }
+    }
+    &--white-border {
+        border-color: $white;
+        color: $white;
+        @include desktop {
+            &:hover {
+                background-color: $white;
+                color: $primary-dark-purple;
+            }
+        }
+    }
+    &--border-icon-text {
+        @include desktop {
+            &:hover {
+                .button__icon svg {
+                    transform: scale(1);
+                }
+            }
+        }
+    }
+    &--vio {
+        height: 4.8rem;
+        padding: 0 2.6rem;
+        padding-top: 0.3rem;
+        border-radius: 4.4rem;
+        background-color: #a7a0f0;
+        color: $white;
+        transition: background $trans, color $trans;
+
+        @include desktop {
+            &:hover {
+                background-color: $primary-dark-purple;
+            }
+        }
+
+        .button__icon {
+            margin-right: 1.5rem;
+        }
+        .button__text {
+            font-size: 1.3rem;
+        }
+    }
+
+    &--ic {
+        svg {
+            position: static;
+            fill: currentColor;
+            width: auto;
+            height: 1.6rem;
+            transition: opacity 0.3s ease-in-out;
+            margin-bottom: 0.3rem;
+        }
+    }
+
+    &--simple {
+        height: 4.8rem;
+        border-radius: 4.4rem;
+        padding: 0 2.6rem;
+        color: $white;
+        background-color: $primary-dark-purple;
+        transition: background $trans;
+
+        @include desktop {
+            &:hover {
+                background-color: #562b7f;
+            }
+        }
+    }
+
+    &--cta {
+        height: 6.4rem;
+        padding: 0 2.6rem;
+        border-radius: 3.95rem;
+        background-color: $primary-dark-purple;
+        color: $white;
+        transition: color $trans;
+
+        .button__text {
+            margin-top: 0.25em;
+            transition: color $trans;
+        }
+
+        svg {
+            position: static;
+            fill: $white;
+            width: auto;
+            height: 1.6rem;
+            margin-right: 1rem;
+            transition: opacity $trans;
+        }
+
+        @include desktop {
+            &:hover {
+                color: rgba($white, 0.6);
+                svg {
+                    opacity: 0.6;
+                }
+            }
+        }
+
+        &.button--small {
+            height: 4.8rem;
+            border-radius: 4.4rem;
+        }
+    }
+
+    &--close {
+        .button__icon {
+            width: 5.2rem;
+            height: 5.2rem;
+            @include mobile {
+                width: 4rem;
+                height: 4rem;
+            }
+        }
+
+        svg {
+            transition: transform $trans;
+        }
+
+        @include desktop {
+            &:hover {
+                svg {
+                    transform: scale(1.15);
+                }
+            }
+        }
+    }
+
+    &--remind {
+        font-size: 0;
+        transition: opacity $trans;
+
+        &:hover {
+            opacity: 0.6;
+        }
+        .button__icon {
+            width: 2.2rem;
+            height: 2.1rem;
+        }
+
+        svg {
+            fill: $primary-dark-purple;
+        }
+    }
+
+    &--inline-download {
+        transition: opacity $trans;
+        .button__text {
+            padding-top: 0.25em;
+        }
+
+        .button__icon {
+            margin-right: 1.5rem;
+            svg {
+                path {
+                    fill: $primary-dark-purple;
+                }
+            }
+        }
+
+        @include desktop {
+            &:hover {
+                opacity: 0.6;
+            }
+        }
+    }
+
+    &--hasIcon {
+        display: inline-flex;
+        align-items: center;
+    }
+
+    &--link {
+        .button__text {
+            font-size: 1.6rem;
+            font-weight: normal;
+            line-height: 1.5;
+            letter-spacing: normal;
+            text-transform: none;
+            margin-top: 0.25em;
+        }
+    }
+
+    &--icon-big {
+        .button__icon {
+            width: 5.8rem;
+            height: 5.8rem;
+
+            @include mobile {
+                width: 4.5rem;
+                height: 4.5rem;
+            }
+        }
+    }
+
+    &--icon-m {
+        .button__icon {
+            width: 4rem;
+            height: 4rem;
+
+            @include mobile {
+                width: 2.9rem;
+                height: 2.9rem;
+            }
+        }
+    }
+
+    &--icon-s {
+        .button__icon {
+            width: 2rem;
+            height: 2rem;
+        }
+    }
+
+    &--onDark {
+        svg {
+            transition: transform $trans;
+            backface-visibility: hidden;
+            circle {
+                stroke: rgba($white, 0.3);
+                transition: stroke $trans, transform $trans, fill $trans;
+            }
+            path {
+                fill: $white;
+            }
+        }
+
+        @include desktop {
+            &:hover {
+                svg {
+                    transform: scale(1.15);
+                    circle {
+                        stroke: $white;
+                    }
+                }
+            }
+        }
+    }
+
+    &--onWhite,
+    &--onLight {
+        svg {
+            transition: transform $trans;
+            backface-visibility: hidden;
+            circle {
+                stroke: $primary-dark-purple;
+                fill: transparent;
+                transition: fill $trans;
+            }
+            path {
+                fill: $primary-dark-purple;
+                transition: fill $trans;
+            }
+        }
+
+        @include desktop {
+            &:hover {
+                svg {
+                    transform: scale(1.15);
+
+                    circle {
+                        fill: $primary-dark-purple;
+                    }
+
+                    path {
+                        fill: $white;
+                    }
+                }
+            }
+        }
+    }
+
+    &--text-icon {
+        .button__icon {
+            margin-left: 1.5rem;
+        }
+        .button__text {
+            transition: transform $trans, color $trans;
+        }
+
+        @include desktop {
+            &:hover {
+                .button__text {
+                    transform: translateX(-0.5rem);
+                }
+            }
+        }
+    }
+
+    &--icon-text {
+        .button__icon {
+            margin-right: 1.5rem;
+        }
+        .button__text {
+            transition: transform $trans, color $trans;
+        }
+
+        @include desktop {
+            &:hover {
+                .button__text {
+                    transform: translateX(0.5rem);
+                }
+            }
+        }
+    }
+
+    &--isDisabled {
+        pointer-events: none !important;
+        opacity: 0.2 !important;
+    }
+
+    .cart-filled {
+        // transition: opacity 150ms eas;
+        opacity: 0;
+    }
+
+    &[data-favorites-toggle-btn='remove'] {
+        .cart-filled {
+            opacity: 1;
+        }
+    }
+}

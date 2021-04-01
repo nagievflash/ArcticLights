@@ -1,0 +1,27 @@
+@font-face {
+  font-family: 'Galio Sans';
+  @include fontSrc('galio_sans/GalioSans_0918');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TT Hoves';
+  @include fontSrc('TT_Hoves/webfonts/3AACDA_1_0');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TT Hoves';
+  @include fontSrc('TT_Hoves/webfonts/3AACDA_2_0');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'TT Hoves';
+  @include fontSrc('TT_Hoves/webfonts/3AACDA_0_0');
+  font-weight: 600;
+  font-style: normal;
+}

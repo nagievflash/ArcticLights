@@ -1,0 +1,61 @@
+.employee {
+    position: relative;
+    width: 30rem;
+
+    @include mobile {
+        width: 100%;
+    }
+
+    &__image {
+        font-size: 0;
+        width: 100%;
+
+        &::after {
+            display: block;
+            width: 100%;
+            height: 30rem;
+            content: '';
+            background-image: linear-gradient(
+                to bottom,
+                rgba($black, 0) 0%,
+                $black
+            );
+            position: absolute;
+            z-index: 2;
+            bottom: 0;
+            left: 0;
+            opacity: 0.6;
+        }
+
+        img {
+            @include imgCover;
+        }
+    }
+
+    &__content {
+        position: absolute;
+        z-index: 3;
+        bottom: 0;
+        left: 0;
+        padding: 0 6.7rem 3rem 3rem;
+
+        @include mobile {
+            width: 100%;
+            padding: 0 3.5rem 2.5rem 2.5rem;
+        }
+
+        .text-block {
+            p + p {
+                margin-top: 0;
+                @include mobile {
+                    margin-top: 0;
+                }
+            }
+
+            small {
+                opacity: 0.71;
+                font-size: 1.4rem;
+            }
+        }
+    }
+}

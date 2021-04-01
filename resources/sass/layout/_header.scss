@@ -1,0 +1,222 @@
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 12rem;
+    position: absolute;
+    width: 100%;
+    z-index: 100;
+    background-color: transparent;
+    top: 0;
+    left: 0;
+    transition: height 250ms ease-in-out;
+
+    @include mobile {
+        height: 8rem;
+    }
+    // transition: background 250ms ease-in-out;
+
+    &__logo {
+        font-size: 0;
+        @include mobile {
+            z-index: 102;
+            position: relative;
+        }
+    }
+
+    &__container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 132rem;
+
+        @include mobile {
+            width: 100%;
+            padding-left: 3rem;
+            padding-right: 4rem;
+        }
+
+        @include desktop-1 {
+            width: 100%;
+            padding-left: 6rem;
+            padding-right: 6rem;
+        }
+    }
+
+    &__right {
+        display: flex;
+    }
+
+    &__burger {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 3rem;
+        z-index: 101;
+        user-select: none;
+
+        span {
+            display: flex;
+            align-items: center;
+            position: relative;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            &:before,
+            &:after {
+                content: '';
+                display: block;
+                width: 100%;
+                height: 1px;
+                background-color: $white;
+                position: absolute;
+                left: 0;
+                opacity: 1;
+                transform-origin: center;
+                transition: transform 400ms ease-in-out, top 400ms ease-in-out,
+                    background-color 600ms ease-in-out;
+            }
+            &:before {
+                top: 30%;
+            }
+            &:after {
+                top: 70%;
+            }
+        }
+
+        &::before {
+            content: '';
+            position: absolute;
+            width: 5rem;
+            height: 5rem;
+        }
+    }
+
+    &--bg-dark-purple {
+        position: fixed;
+        background-color: $primary-dark-purple;
+        transition: background $trans, transform 450ms ease-in-out,
+            height 450ms ease-in-out;
+        height: 8rem;
+    }
+
+    &--dark {
+        border-bottom: 1px solid rgba($primary-dark-purple, 0.15);
+    }
+
+    .nav-list--horizontal {
+        .nav-list__item:not(:nth-last-child(-n + 2)) {
+            @include mobile {
+                display: none;
+            }
+        }
+    }
+
+    .nav-list__link {
+        transition: color $trans, transform $trans, opacity $trans;
+    }
+
+    .logo {
+        svg {
+            fill: $white;
+            transition: fill $trans;
+        }
+    }
+
+    .dropdown {
+        &__label {
+            transition: color $trans;
+            color: $white;
+        }
+        &__arrow {
+            svg {
+                transition: fill $trans;
+                fill: $white;
+            }
+        }
+    }
+
+    &--isHidden {
+        transform: translateY(-100%);
+    }
+
+    &--hasBorder {
+        border-bottom: 1px solid rgba($white, 0.15);
+    }
+}
+
+body:not(.navigation--open) {
+    .header--dark {
+        @include headerColor($primary-dark-purple);
+    }
+
+    .header--bg-dark-purple {
+        @include headerColor($white);
+    }
+}
+
+body.navigation--open {
+    .header--dark .header__logo .logo svg {
+        fill: $primary-dark-purple;
+    }
+    .header--dark.header--bg-dark-purple .header__logo .logo svg {
+        fill: $white;
+    }
+}
+
+.scroll-up {
+}
+
+.scroll-down {
+}
+
+.navigation--open {
+    .header__burger {
+        span {
+            &:before,
+            &:after {
+                transition: transform 400ms ease-in-out 220ms,
+                    top 200ms ease-in-out, background $trans;
+                background-color: $white;
+            }
+            &:before {
+                top: 50%;
+                transform: rotate(45deg);
+            }
+            &:after {
+                top: 50%;
+                transform: rotate(-45deg);
+            }
+        }
+    }
+}
+
+body:not(.navigation--open) {
+    .header__burger {
+        transform: opacity $trans;
+        &:hover {
+            span {
+                &:before {
+                    transform: translateY(2px);
+                }
+                &:after {
+                    transform: translateY(-2px);
+                }
+            }
+            opacity: 0.6;
+        }
+    }
+}
+
+body.navigation--open {
+    .header__burger {
+        &:hover {
+            span {
+                &:before,
+                &:after {
+                    background-color: rgba($white, 0.6);
+                }
+            }
+        }
+    }
+}

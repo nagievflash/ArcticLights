@@ -1,0 +1,141 @@
+.swiper {
+    &__button {
+        position: absolute;
+        z-index: 2;
+        font-size: 0;
+        backface-visibility: hidden;
+        transition: opacity $trans;
+        &.hidden {
+            display: none;
+        }
+    }
+
+    &__pagination-fraction {
+        display: inline-block;
+        position: absolute;
+        z-index: 2;
+        pointer-events: none;
+        font-size: 1.8rem;
+        line-height: 1.44;
+        color: $white;
+        width: auto !important;
+        left: auto !important;
+        .swiper-pagination-total {
+            opacity: 0.2;
+        }
+        &.hidden {
+            display: none;
+        }
+    }
+
+    &__pagination-progressbar {
+        width: 15rem !important;
+        height: 2px !important;
+        background-color: rgba($primary-dark-purple, 0.1) !important;
+        position: absolute;
+        bottom: 0;
+        top: auto !important;
+        left: auto !important;
+        right: 10.8rem;
+
+        @include mobile {
+            width: 31.5rem !important;
+            right: 3rem;
+        }
+        .swiper-pagination-progressbar-fill {
+            background-color: $primary-dark-purple !important;
+        }
+    }
+
+    &__gallery.swiper-container {
+        padding-left: 10.8rem;
+        padding-right: 45.6rem;
+        padding-bottom: 6rem;
+
+        @include mobile {
+            padding-left: 3rem;
+            padding-right: 3.6rem;
+            padding-bottom: 4.2rem;
+        }
+
+        @include desktop-1 {
+            padding-left: 28rem;
+            padding-right: 61rem;
+        }
+
+        @include desktop-2 {
+            padding-left: 43rem;
+            padding-right: 76rem;
+        }
+
+        & > * {
+            cursor: none;
+        }
+    }
+
+    &__apartment-gallery {
+        .swiper {
+            &__button {
+                top: 50%;
+                z-index: 5;
+                margin-top: -2.8rem;
+
+                &--next {
+                    right: 4rem;
+                }
+
+                &--prev {
+                    left: 4rem;
+                }
+            }
+        }
+
+        .pagination--simple-small {
+            position: absolute;
+            bottom: 4rem !important;
+            z-index: 5;
+        }
+    }
+
+    &__filosofy {
+        .swiper {
+            &__button {
+                bottom: 7rem;
+
+                @include mobile {
+                    bottom: 5rem;
+                }
+
+                &--next {
+                    right: 10.8rem;
+                    @include mobile {
+                        right: 3rem;
+                    }
+                    @include desktop-1 {
+                        right: 26.3rem;
+                    }
+                    @include desktop-2 {
+                        right: 43.3rem;
+                    }
+                }
+
+                &--prev {
+                    right: 17.9rem;
+                    @include mobile {
+                        right: 8.5rem;
+                    }
+                    @include desktop-1 {
+                        right: 34.4rem;
+                    }
+                    @include desktop-2 {
+                        right: 50.4rem;
+                    }
+                }
+            }
+        }
+    }
+}
+.swiper-button-disabled {
+    opacity: 0.2;
+    pointer-events: none;
+}

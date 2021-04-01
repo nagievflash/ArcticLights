@@ -1,0 +1,253 @@
+.cta {
+    font-size: 0;
+    @include mobile {
+        width: 100%;
+    }
+    &--2-buttons {
+        @include mobile {
+            display: flex;
+        }
+        .button:first-of-type {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            padding-right: 1rem;
+        }
+        .button:last-of-type {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            padding-left: 1rem;
+            @include mobile {
+                position: relative;
+                &:before {
+                    content: '';
+                    display: block;
+                    height: 2rem;
+                    width: 1px;
+                    background-color: rgba($white, 0.15);
+                    position: absolute;
+                    left: 0;
+                }
+            }
+        }
+
+        .button {
+        }
+    }
+
+    &--3-buttons {
+        @include mobile {
+            display: flex;
+        }
+        .button:first-of-type {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            padding-right: 1rem;
+        }
+        .button:last-of-type {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            padding-left: 1rem;
+            @include mobile {
+                position: relative;
+                &:before {
+                    content: '';
+                    display: block;
+                    height: 2rem;
+                    width: 1px;
+                    background-color: rgba($white, 0.15);
+                    position: absolute;
+                    left: 0;
+                }
+            }
+        }
+
+        .button {
+            &:nth-of-type(2) {
+                border-radius: 0;
+                @include mobile {
+                    position: relative;
+                    &:before {
+                        content: '';
+                        display: block;
+                        height: 2rem;
+                        width: 1px;
+                        background-color: rgba($white, 0.15);
+                        position: absolute;
+                        left: 0;
+                    }
+                }
+            }
+        }
+    }
+    &--sticky {
+        position: fixed;
+        right: 1.5rem;
+        bottom: 1.5rem;
+        z-index: 10;
+        overflow: hidden;
+
+        @include mobile {
+            bottom: 0;
+            right: 0;
+        }
+
+        & > * {
+            transform: translateY(102%);
+        }
+
+        .button {
+            @include mobile {
+                display: flex;
+                flex: 1;
+                border-radius: 0;
+                padding-left: 1rem;
+                padding-right: 1rem;
+                justify-content: center;
+            }
+        }
+    }
+
+    &--section {
+        background-color: #dcebfa;
+        .cta {
+            &__inner {
+                display: flex;
+                flex-wrap: wrap;
+                min-height: 56rem;
+                padding: 0 10.2rem;
+                justify-content: space-between;
+
+                @include mobile {
+                    padding: 6rem 2.6rem;
+                    min-height: auto;
+                }
+
+                &--left {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    width: 40.8rem;
+                    @include mobile {
+                        width: 100%;
+                    }
+                }
+                &--right {
+                    width: 40.8rem;
+
+                    @include mobile {
+                        display: none;
+                    }
+                }
+
+                &--avatars {
+                    width: 100%;
+                    margin-bottom: 14rem;
+                    @include mobile {
+                        margin-bottom: 8rem;
+                    }
+                    .nav-list--avatars {
+                        @include mobile {
+                            flex-direction: column;
+                            margin-top: 6rem;
+                        }
+                        .nav-list__item {
+                            width: 25%;
+                            margin: 0;
+
+                            &:not(:first-of-type) {
+                                padding-left: 4rem;
+                                @include mobile {
+                                    padding-left: 0;
+                                    margin-top: 1rem;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            &__contact-card {
+                display: flex;
+                align-items: center;
+
+                @include mobile {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+
+                .cta__contact-avatar {
+                    margin-right: 4rem;
+                    flex-shrink: 0;
+                    @include mobile {
+                        margin-bottom: 2rem;
+                    }
+                }
+
+                .heading {
+                    margin-bottom: 1rem;
+                }
+
+                .nav-list__link {
+                    line-height: 1.5;
+                    color: $primary-dark-purple;
+                }
+
+                .nav-list__item {
+                }
+            }
+            &__contact-avatar {
+                width: 10rem;
+                height: 10rem;
+                border-radius: 50%;
+                overflow: hidden;
+                img {
+                    @include imgCover;
+                }
+            }
+            &__image {
+                width: 100%;
+                height: 51rem;
+                transform: translateY(-5rem);
+                img {
+                    @include imgCover;
+                }
+            }
+        }
+
+        .nav-list--contacts {
+            .nav-list__item {
+                &:not(:last-of-type) {
+                    margin-bottom: 1rem;
+                }
+            }
+
+            .button--vio {
+                margin-top: 2rem;
+            }
+        }
+
+        .heading--ms + .cta__contact-card {
+            margin-top: 5rem;
+            @include mobile {
+                margin-top: 3rem;
+            }
+        }
+    }
+}
+
+.show-cta {
+    .cta--sticky {
+        & > * {
+            transition: transform 500ms ease-in-out;
+            transform: translateY(0);
+        }
+    }
+}
+
+.hide-cta {
+    .cta--sticky {
+        & > * {
+            transition: transform 500ms ease-in-out;
+            transform: translateY(102%);
+        }
+    }
+}

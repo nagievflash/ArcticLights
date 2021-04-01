@@ -1,0 +1,32 @@
+.dot {
+    display: inline-block;
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 50%;
+
+    &.dot--developing {
+        background-color: $primary-blue;
+    }
+
+    &.dot--planned {
+        background-color: $primary-purple;
+    }
+
+    &.dot--finished {
+        background-color: $primary-dark-purple;
+    }
+
+    &.dot--free {
+        background-color: $green;
+    }
+
+    &.dot--sold {
+        background-color: $pink;
+    }
+    &.dot--reserved {
+        background-color: $yellow;
+    }
+    &.dot--selected {
+        background-color: #dcebfa;
+    }
+}

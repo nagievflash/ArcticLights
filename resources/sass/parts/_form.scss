@@ -1,0 +1,176 @@
+.form {
+    display: block;
+    width: 100%;
+
+    &__control {
+        display: block;
+        width: 100%;
+        position: relative;
+
+        &--m {
+            width: 29rem;
+
+            @include mobile {
+                width: 100%;
+            }
+        }
+
+        &.active {
+            .form__label {
+                opacity: 0.6;
+                // font-size: 1.3rem;
+                transform: translateY(-100%) scale(0.7);
+                span {
+                    font-size: 1.1rem;
+                }
+            }
+        }
+
+        &.notValid {
+            .form__label {
+                color: $error-red;
+            }
+
+            .form__input,
+            .form__textarea {
+                border-color: $error-red;
+            }
+
+            .form-checkbox {
+                color: $error-red;
+
+                &__checkmark {
+                    border-color: $error-red;
+                }
+                a {
+                    border-color: $error-red;
+                }
+            }
+        }
+    }
+
+    &__label {
+        display: block;
+        font-size: 1.8rem;
+        font-weight: 400;
+        line-height: 1.44;
+        color: $primary-dark-purple;
+        position: absolute;
+        left: 0;
+        top: 1.2rem;
+        transition: opacity $trans, font-size $trans, transform $trans;
+        transform-origin: left center;
+        will-change: transform;
+        cursor: text;
+
+        @include mobile {
+            font-size: 1.6rem;
+            top: 0.8rem;
+        }
+
+        span {
+            color: #aea7b4;
+            font-size: 1.4rem;
+            transition: font-size $trans;
+        }
+    }
+
+    &__input,
+    &__textarea {
+        width: 100%;
+        height: 5rem;
+        border-bottom: solid 1px $primary-dark-purple;
+        font-family: $font-base;
+        font-size: 1.8rem;
+        font-weight: 400;
+        line-height: 1.44;
+        color: $primary-dark-purple;
+        transition: border $trans;
+
+        @include mobile {
+            font-size: 1.6rem;
+            height: 4rem;
+        }
+    }
+
+    &__textarea {
+        min-width: 100%;
+        max-width: 100%;
+        height: 9rem;
+        min-height: 9rem;
+        padding: 1.2rem 0;
+        resize: none;
+    }
+
+    &__error-message {
+        font-size: 1.6rem;
+        color: $error-red;
+        @include mobile {
+            font-size: 1.4rem;
+        }
+    }
+
+    &__success {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        @include sheet;
+
+        @include mobile {
+            position: static;
+            height: 50rem;
+        }
+
+        @include desktop-1 {
+            width: 100% !important;
+        }
+    }
+
+    &__success-message {
+        width: 41rem;
+        text-align: center;
+        @include mobile {
+            width: 100%;
+            padding: 0 2.6rem;
+        }
+    }
+
+    &__success-icon {
+        display: inline-block;
+        width: 8.1rem;
+        height: 8.1rem;
+        margin-bottom: 4rem;
+        @include image('icons/success.svg');
+        @include background-contain;
+        background-size: 8rem;
+
+        @include mobile {
+            background-size: 6.4rem;
+            width: 6.5rem;
+            height: 6.5rem;
+            margin-bottom: 3rem;
+        }
+    }
+
+    &--flex {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+
+.form__control + .form__control {
+    margin-top: 2.8rem;
+
+    @include mobile {
+        margin-top: 2.5rem;
+    }
+}
+
+.form__control--m {
+    &:nth-child(2) {
+        margin-top: 0;
+        @include mobile {
+            margin-top: 2.5rem;
+        }
+    }
+}

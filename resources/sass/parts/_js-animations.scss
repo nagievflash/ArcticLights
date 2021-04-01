@@ -1,0 +1,17 @@
+.js-head {
+    + * {
+        opacity: 0;
+    }
+
+    h1.heading {
+        line-height: 0;
+    }
+}
+
+.js-reveal-content {
+    opacity: 0;
+}
+
+.js-head-mask {
+    margin-bottom: 2px;
+}

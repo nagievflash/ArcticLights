@@ -1,0 +1,332 @@
+.cookie {
+    position: fixed;
+    z-index: 9999;
+
+    &--policy {
+        width: 49rem;
+        background-color: $primary-purple;
+        bottom: 1.5rem;
+        left: 1.5rem;
+        transition: opacity 450ms ease-in-out;
+
+        @include mobile {
+            width: 34.5rem;
+        }
+
+        .text-block {
+            a {
+                border-bottom: 1px solid $primary-dark-purple;
+                transition: opacity $trans, border $trans;
+                &:hover {
+                    opacity: 0.6;
+                    border-color: transparent;
+                }
+            }
+        }
+
+        .button--border {
+            height: 4rem;
+        }
+
+        .cookie__body {
+            padding: 2rem;
+            @include mobile {
+                padding: 1.5rem 1.5rem 2rem;
+            }
+        }
+
+        .cookie__cta {
+            display: flex;
+            flex-direction: column;
+            margin-top: 2rem;
+            .button {
+                &__text {
+                    white-space: normal;
+                }
+                + .button {
+                    margin-top: 20px;
+                }
+            }
+        }
+
+        &.hide {
+            opacity: 0;
+            pointer-events: none;
+        }
+    }
+
+    &--intro {
+        display: flex;
+
+        @include sheet(fixed);
+        overflow: hidden;
+
+        .cookie {
+            &__wrap {
+                display: flex;
+                width: 100%;
+                padding: 12rem 10.8rem;
+                align-items: center;
+                background-color: $primary-dark-purple;
+                @include mobile {
+                    overflow: auto;
+                    padding: 0 3rem;
+                    align-items: stretch;
+                }
+            }
+            &__body {
+                width: 100%;
+            }
+
+            &__inner {
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+
+                @include mobile {
+                    flex-direction: column;
+                    padding: 3rem 0;
+                }
+
+                &--left {
+                    width: 71.4rem;
+                    @include mobile {
+                        width: 100%;
+                    }
+
+                    .heading {
+                        font-size: 7.5rem;
+                        line-height: 1.07;
+                        margin-top: -0.5em;
+                        position: relative;
+                        z-index: 2;
+                        @include mobile {
+                            font-size: 3.2rem;
+                            line-height: 1.2;
+                            margin-top: -0.6em;
+                        }
+                    }
+                }
+
+                &--right {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: flex-end;
+                    width: 30.6rem;
+                    opacity: 0;
+                    transform: translateY(5rem);
+                    @include mobile {
+                        width: 100%;
+                        margin-top: 4rem;
+                    }
+
+                    .button {
+                        color: $white;
+                        margin-top: 5rem;
+
+                        @include mobile {
+                            margin-top: 2.5rem;
+                        }
+
+                        .svg-circle {
+                            circle {
+                                stroke-dashoffset: 132;
+
+                                stroke-dasharray: 132;
+
+                                stroke: $white;
+                            }
+                        }
+                    }
+                }
+            }
+
+            &__img-wrap {
+                position: relative;
+                width: 100%;
+                max-height: 56.7vh;
+                height: 46.5rem;
+                overflow: hidden;
+            }
+
+            &__img {
+                @include sheet;
+                @include background-cover;
+                top: 100%;
+            }
+        }
+        &.hide {
+            pointer-events: none;
+            transform-origin: center bottom;
+        }
+    }
+
+    &--policy-detailed {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        @include sheet(fixed);
+        overflow: hidden;
+        transition: opacity 450ms ease-in-out;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+
+        .cookie {
+            &__body {
+                width: 82.4rem;
+                height: 70vh;
+                background-color: $white;
+                position: relative;
+                z-index: 2;
+                padding-bottom: 8rem;
+                @include mobile {
+                    width: 100%;
+                    height: 100vh;
+                    padding-bottom: 11.2rem;
+                }
+            }
+
+            &__overflow-container {
+                overflow: auto;
+                height: 100%;
+                width: 100%;
+                padding: 5rem 3.5rem 0 5rem;
+                @include mobile {
+                    padding: 3rem 3rem 0 3rem;
+                }
+
+                .heading--xxs {
+                    margin-bottom: 3rem;
+                    @include mobile {
+                        margin-bottom: 1.5rem;
+                    }
+                }
+
+                .button {
+                    margin-top: 2rem;
+                    @include mobile {
+                        margin-top: 1.5rem;
+                    }
+                }
+            }
+
+            &__overlay {
+                opacity: 0.4;
+                background-color: #140e19;
+                @include sheet;
+            }
+
+            &__cta {
+                display: flex;
+                justify-content: flex-end;
+                position: absolute;
+                flex-shrink: 0;
+                padding: 2rem;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 8rem;
+                background-color: $primary-purple;
+                @include mobile {
+                    height: 11.2rem;
+                    flex-direction: column;
+                }
+
+                .button {
+                    align-self: center;
+
+                    &--border {
+                        height: 4rem;
+                        @include mobile {
+                            order: -1;
+                            margin-bottom: 2rem;
+                        }
+                    }
+                    + .button {
+                        margin-left: 5rem;
+                        @include mobile {
+                            margin-left: 0;
+                        }
+                    }
+                }
+            }
+
+            &__label,
+            &__title {
+                font-size: 1.2rem;
+                line-height: 1.33;
+                color: $primary-dark-purple;
+            }
+
+            &__title {
+                margin-bottom: 2px;
+            }
+
+            &__label {
+                color: #9787a6;
+            }
+        }
+
+        .list--privacy {
+            margin-top: 4rem;
+            @include mobile {
+                margin-top: 2rem;
+            }
+            & > .list__item {
+                padding: 2rem 0;
+            }
+        }
+
+        .dropdown {
+            width: 100%;
+            padding-right: 0;
+            pointer-events: none;
+
+            &__label {
+                width: 100%;
+                padding-right: 5rem;
+            }
+
+            &__content {
+                display: none;
+                position: relative;
+                width: 58rem;
+                visibility: visible;
+                opacity: 1;
+                transform: unset;
+                pointer-events: auto;
+                padding-top: 3rem;
+                @include mobile {
+                    width: 100%;
+                    padding-top: 2rem;
+                }
+
+                .text-block {
+                    margin-bottom: 2rem;
+                    color: #796092;
+                }
+
+                .heading {
+                    margin-bottom: 1.5rem;
+                    font-size: 1.4rem;
+                    line-height: 1.43;
+                }
+            }
+
+            &__arrow {
+                pointer-events: auto;
+            }
+
+            .form-checkbox {
+                pointer-events: auto;
+            }
+        }
+    }
+
+    &.isVisible {
+        visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
+    }
+}

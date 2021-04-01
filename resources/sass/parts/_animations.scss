@@ -1,0 +1,13 @@
+.js-head {
+    position: relative;
+}
+
+.js-head-mask {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    transform: translateY(100%);
+    background-color: $white;
+    z-index: 10;
+}

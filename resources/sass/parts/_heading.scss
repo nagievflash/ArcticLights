@@ -1,0 +1,142 @@
+.heading {
+    font-family: $font-base;
+    font-weight: normal;
+
+    a {
+        transition: opacity $trans;
+
+        &:hover {
+            opacity: 0.6;
+        }
+    }
+
+    &--xl {
+        font-size: 8.5rem;
+        line-height: 1.06;
+
+        @include mobile {
+            font-size: 3.2rem;
+            line-height: 1.19;
+        }
+    }
+
+    &--l {
+        font-size: 5.5rem;
+        line-height: 1.18;
+        @include mobile {
+            font-size: 3.2rem;
+            line-height: 1.19;
+        }
+    }
+
+    &--ml {
+        font-size: 5rem;
+        line-height: 1.1;
+        @include mobile {
+            font-size: 2.6rem;
+        }
+    }
+
+    &--ms {
+        font-size: 4.5rem;
+        line-height: 1.11;
+        @include mobile {
+            font-size: 2.6rem;
+            line-height: 1.15;
+        }
+    }
+
+    &--s {
+        font-size: 3.4rem;
+        line-height: 1.18;
+        @include mobile {
+            font-size: 2.4rem;
+            line-height: 1.25;
+        }
+    }
+
+    &--xs {
+        font-size: 2.8rem;
+        line-height: 1.14;
+        @include mobile {
+            font-size: 1.8rem;
+            line-height: 1.44;
+        }
+    }
+
+    &--xxs {
+        font-size: 2.2rem;
+        line-height: 1.18;
+        @include mobile {
+            font-size: 1.8rem;
+            line-height: 1.44;
+        }
+    }
+
+    &--white {
+        color: $white;
+    }
+
+    &--dark {
+        color: $primary-dark-purple;
+    }
+
+    &--fancy {
+        font-family: $fancy-heading;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.2;
+        text-transform: uppercase;
+        &.heading--xl {
+            font-size: 5.5rem;
+            line-height: 1.18;
+            letter-spacing: 0.145em;
+            @include mobile {
+                font-size: 3.4rem;
+            }
+        }
+
+        &.heading--l {
+            font-size: 2.8rem;
+            letter-spacing: 0.107em;
+
+            @include mobile {
+                font-size: 2rem;
+            }
+        }
+
+        &.heading--m {
+            font-size: 2.4rem;
+            letter-spacing: 0.125em;
+            @include mobile {
+                font-size: 1.8rem;
+            }
+        }
+
+        &.heading--s {
+            font-size: 2rem;
+            letter-spacing: 0.15em;
+            @include mobile {
+                font-size: 1.4rem;
+            }
+        }
+
+        &.heading--xs {
+            font-size: 1.6rem;
+            letter-spacing: 0.15em;
+        }
+    }
+
+    > span {
+        display: inline-block;
+        overflow: hidden;
+        position: relative;
+        line-height: 1.18;
+
+        > span {
+            display: inline-block;
+            transform: translateY(105%);
+        }
+    }
+}

@@ -1,0 +1,116 @@
+.list {
+    counter-reset: list-counter;
+
+    &__item {
+        &--hasNumber {
+            &::before {
+                display: block;
+                counter-increment: list-counter;
+                content: '0' counter(list-counter);
+                font-size: 2.8rem;
+                line-height: 1;
+                color: $primary-dark-purple;
+                margin-bottom: 2rem;
+                font-weight: 400;
+                letter-spacing: normal;
+                @include mobile {
+                    font-size: 1.8rem;
+                    margin-bottom: 0.5rem;
+                }
+            }
+
+            &:nth-child(n + 10) {
+                &::before {
+                    content: counter(list-counter);
+                }
+            }
+        }
+
+        &--hasCheckmark {
+            display: flex;
+            align-items: center;
+
+            &::before {
+                display: inline-block;
+                content: '';
+                height: 2.6rem;
+                width: 4.5rem;
+                background-position: left center;
+                background-repeat: no-repeat;
+                background-size: 2.4rem;
+                @include image('icons/checkbox-icon-ligth.svg');
+                flex-shrink: 0;
+                @include mobile {
+                    align-self: flex-start;
+                }
+            }
+
+            &:not(:last-of-type) {
+                margin-bottom: 1.2rem;
+                @include mobile {
+                    margin-bottom: 1.5rem;
+                }
+            }
+
+            .text-block {
+                line-height: 1.25;
+            }
+        }
+
+        &--hasUnderline {
+            border-bottom: 1px solid rgba($primary-dark-purple, 0.1);
+        }
+    }
+
+    &--filters {
+        display: flex;
+
+        .list__item {
+            &:not(:last-of-type) {
+                margin-right: 1rem;
+            }
+        }
+    }
+
+    &--3cols {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+
+        @include mobile {
+            flex-direction: column;
+        }
+        .list__item {
+            width: calc(33.33% - 5rem);
+            @include mobile {
+                width: 100%;
+            }
+
+            + .list__item:nth-child(n + 4) {
+                margin-top: 7rem;
+                @include mobile {
+                    margin-top: 0;
+                }
+            }
+
+            &:not(:last-of-type) {
+                margin-bottom: 3rem;
+            }
+        }
+    }
+
+    &--cookie {
+        background-color: $secondary-light-purple;
+
+        .list__item {
+            padding: 1.2rem;
+        }
+    }
+
+    .heading--xxs + .text-block {
+        margin-top: 1.5rem;
+        @include mobile {
+            margin-top: 0.5rem;
+        }
+    }
+}

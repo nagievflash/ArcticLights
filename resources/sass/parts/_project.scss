@@ -1,0 +1,216 @@
+.project {
+    position: relative;
+    @include mobile {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__image {
+        display: block;
+        width: 100%;
+        height: 66rem;
+        font-size: 0;
+        overflow: hidden;
+        backface-visibility: hidden;
+        @include mobile {
+            height: auto;
+            order: -1;
+        }
+        img {
+            @include imgCover;
+            transition: transform 450ms;
+            backface-visibility: hidden;
+        }
+    }
+    &__content {
+        display: block;
+        width: 100%;
+        padding-top: 4.3rem;
+
+        @include mobile {
+            display: none;
+        }
+    }
+    &__details {
+        display: flex;
+        width: 50%;
+    }
+    &__card {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 50%;
+        padding: 6.5rem 10rem 6.5rem 6.5rem;
+        z-index: 2;
+        user-select: none;
+        @include mobile {
+            position: static;
+            width: 100%;
+            padding: 4rem 5.2rem 2.5rem 4rem;
+            pointer-events: none;
+        }
+
+        .details-list {
+            display: none;
+            @include mobile {
+                display: flex;
+                margin-top: 1.5rem;
+            }
+        }
+
+        & > .text-block {
+            margin-top: 2rem;
+
+            @include mobile {
+                display: none;
+            }
+        }
+
+        .button {
+            margin-top: 3rem;
+            align-self: flex-end;
+            margin-right: -6rem;
+            margin-bottom: -2.5rem;
+            pointer-events: none;
+            @include mobile {
+                pointer-events: auto;
+                margin-right: -2.7rem;
+                margin-top: -2.2rem;
+                margin-bottom: auto;
+            }
+
+            .button__text {
+                @include mobile {
+                    display: none;
+                }
+            }
+        }
+
+        &--blue {
+            background-color: $primary-blue;
+        }
+
+        &--light-blue {
+            background-color: #c9dff6;
+        }
+
+        &--purple {
+            background-color: $primary-purple;
+        }
+
+        &--light-purple {
+            background-color: #d0d1f6;
+        }
+    }
+
+    &__phone {
+        position: absolute;
+        bottom: 2.5rem;
+        right: 4rem;
+        z-index: 3;
+        font-size: 0;
+        @include mobile {
+            right: 2.5rem;
+        }
+
+        .link {
+            display: inline-block;
+            font-size: 1.2rem;
+            font-weight: 600;
+            line-height: 1.4;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+            position: relative;
+
+            &:before {
+                content: '';
+                display: block;
+
+                height: calc(100% + 2.5rem);
+                position: absolute;
+                @include mobile {
+                    width: calc(100% + 2.5rem);
+                    transform: translate(-1.25rem, -1.25rem);
+                }
+            }
+
+            @include desktop {
+                &:after {
+                    content: '';
+                    display: block;
+                    width: 100%;
+                    height: 1px;
+                    transition: transform $trans;
+                    transform-origin: center;
+                    transform: scaleX(0);
+                    position: absolute;
+                    left: 0;
+                    bottom: 0;
+                    background-color: $primary-dark-purple;
+                }
+
+                &:hover {
+                    &::after {
+                        transform: scaleX(1);
+                    }
+                }
+            }
+        }
+
+        &--placeholder {
+            opacity: 0;
+            pointer-events: none;
+            visibility: hidden;
+            position: static;
+
+            @include mobile {
+                margin-top: 2rem;
+            }
+        }
+    }
+
+    &__ask {
+        position: absolute;
+        width: 50%;
+        bottom: 3rem;
+        right: 0;
+        z-index: 2;
+        padding-left: 6.5rem;
+        pointer-events: none;
+
+        .button {
+            pointer-events: all;
+        }
+
+        @include mobile {
+            display: none;
+        }
+    }
+}
+
+a.project__card {
+    @include desktop {
+        &:hover {
+            & ~ .project__image img {
+                transform: scale(1.05);
+            }
+
+            .button {
+                svg {
+                    transform: scale(1.15);
+                    circle {
+                        fill: $primary-dark-purple;
+                    }
+                    path {
+                        fill: $white;
+                    }
+                }
+                .button__text {
+                    transform: translateX(-0.5rem);
+                }
+            }
+        }
+    }
+}

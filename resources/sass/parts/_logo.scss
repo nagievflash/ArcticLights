@@ -1,0 +1,17 @@
+.logo {
+    display: inline-flex;
+    align-self: flex-start;
+    user-select: none;
+    svg {
+        display: inline-block;
+        width: 14rem;
+        height: 4.3rem;
+        pointer-events: none;
+        font-size: 0;
+
+        @include mobile {
+            width: 8.4rem;
+            height: 2.6rem;
+        }
+    }
+}

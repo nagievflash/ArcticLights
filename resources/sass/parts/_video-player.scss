@@ -1,0 +1,121 @@
+.video-player {
+    display: block;
+    position: relative;
+    width: 100%;
+
+    &__play {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate3d(-50%, -50%, 0);
+        font-size: 0;
+        cursor: pointer;
+        z-index: 4;
+        transition: opacity $trans ease-in-out, visibility $trans ease-in-out;
+
+        // @include desktop {
+        //   &:hover {
+        //     svg {
+        //       circle {
+        //         fill: $black;
+        //       }
+        //       path {
+        //         fill: $white;
+        //       }
+        //     }
+        //   }
+        // }
+
+        &:hover {
+            svg {
+                transform: scale(1.08);
+                circle {
+                    stroke: $primary-dark-purple;
+                    fill: $primary-dark-purple;
+                }
+                path {
+                    fill: $white;
+                }
+            }
+        }
+
+        svg {
+            pointer-events: none;
+            width: 13rem;
+            height: 13rem;
+            transition: transform $trans;
+
+            @include mobile {
+                width: 6.8rem;
+                height: 6.8rem;
+            }
+
+            circle {
+                stroke: $white;
+                fill: $white;
+                transition: stroke $trans, fill $trans;
+                @include mobile {
+                    fill: $white;
+                }
+            }
+            path {
+                fill: $primary-dark-purple;
+                transition: fill $trans;
+                @include mobile {
+                    fill: $primary-dark-purple;
+                }
+            }
+        }
+    }
+
+    iframe {
+        width: 100%;
+        height: 100%;
+    }
+
+    video {
+        height: auto;
+        width: 100%;
+        object-fit: cover;
+        background-size: 100%;
+        background-repeat: no-repeat;
+    }
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+
+    &.isPlaying {
+        .video-player__play {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+    }
+
+    &--fullscreen {
+        height: 100vh;
+        overflow: hidden;
+
+        video {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate3d(-50%, -50%, 0);
+            min-height: 100%;
+            height: 100%;
+            min-width: 100%;
+            width: 100%;
+
+            @include mobile {
+                min-height: auto;
+                height: auto;
+                min-width: auto;
+                width: auto;
+                max-width: 100%;
+                max-height: 100%;
+            }
+        }
+    }
+}

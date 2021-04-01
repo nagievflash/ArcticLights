@@ -1,0 +1,41 @@
+.gallery {
+    width: 100%;
+    display: flex;
+
+    &__image {
+        img {
+            @include imgCover;
+        }
+    }
+
+    &--1 {
+        justify-content: space-between;
+        @include mobile {
+            width: calc(100% + 2.6rem);
+            margin-left: -2.6rem;
+            flex-direction: column;
+        }
+
+        .gallery__image {
+            &--1 {
+                width: 40.8rem;
+                height: 55rem;
+                @include mobile {
+                    width: 100%;
+                    height: auto;
+                }
+            }
+
+            &--2 {
+                width: 71.4rem;
+                height: 51rem;
+                margin-top: 13rem;
+                @include mobile {
+                    width: 100%;
+                    height: auto;
+                    margin-top: 3rem;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,51 @@
+$preloaderDotSize: 1.5rem; // size of each dot
+$preloaderDotColor: $primary-dark-purple; // color at full opacity
+$preloaderDotTimer: 1s; // time for full animation
+$preloaderDotCount: 5; // amount of dots (spans)
+$preloaderDotFader: 0.2; // opacity to fade to
+
+.app-preloader {
+    display: block;
+    background: rgba($primary-blue, 0.15);
+    @include sheet;
+    text-align: center;
+    z-index: 99999;
+
+    span {
+        background: $preloaderDotColor;
+        display: inline-block;
+        height: $preloaderDotSize;
+        margin: 0 $preloaderDotSize/2;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+        vertical-align: top;
+        width: $preloaderDotSize;
+        @for $i from 1 through $preloaderDotCount {
+            &:nth-child(#{$i}) {
+                animation: pulse
+                    $preloaderDotTimer
+                    infinite
+                    (($preloaderDotTimer/$preloaderDotCount) * $i);
+            }
+        }
+    }
+
+    &--inner {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@keyframes pulse {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: $preloaderDotFader;
+        transform: scale(1.1);
+    }
+}

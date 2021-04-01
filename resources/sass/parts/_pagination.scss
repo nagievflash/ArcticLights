@@ -1,0 +1,187 @@
+.pagination {
+    display: flex;
+
+    a,
+    span {
+        font-size: 1.8rem;
+        font-weight: normal;
+        line-height: 1.29;
+        color: $primary-dark-purple;
+        user-select: none;
+    }
+
+    &--circle {
+        a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 4.7rem;
+            height: 4.7rem;
+            border-radius: 50%;
+            position: relative;
+            transition: color $trans;
+            line-height: 1;
+            padding-top: 0.25em;
+
+            @include mobile {
+                width: 4rem;
+                height: 4rem;
+                font-size: 1.4rem;
+            }
+
+            &:hover {
+                color: rgba($primary-dark-purple, 0.6);
+            }
+
+            &::before {
+                content: '';
+                display: block;
+                @include sheet;
+                border-radius: 50%;
+                border: solid 1px $primary-dark-purple;
+                opacity: 0;
+                transition: opacity $trans;
+            }
+
+            &:not(:last-of-type) {
+                margin-right: 0.3rem;
+            }
+
+            &.active {
+                &:before {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    &--simple {
+        justify-content: flex-end;
+
+        a,
+        span {
+            display: inline-block;
+            position: relative;
+            padding: 0 0.2rem;
+            transition: opacity $trans;
+
+            &:not(:last-of-type) {
+                margin-right: 1.5rem;
+            }
+
+            &:after {
+                content: '';
+                display: block;
+                width: 100%;
+                height: 1px;
+                background-color: $primary-dark-purple;
+                bottom: 0;
+                left: 0;
+                position: absolute;
+            }
+
+            &:hover {
+                opacity: 0.6;
+            }
+        }
+    }
+
+    &--underline {
+        a,
+        span {
+            &::after {
+                opacity: 0;
+            }
+
+            &.active {
+                &::after {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    &--simple-small {
+        justify-content: center;
+        a,
+        span {
+            display: inline-block;
+            position: relative;
+            padding: 0 0.3rem;
+            font-size: 1.4rem;
+            color: $primary-dark-purple;
+            cursor: pointer;
+
+            &:not(:last-of-type) {
+                margin-right: 0.7rem;
+            }
+
+            &:after {
+                content: '';
+                display: block;
+                width: 100%;
+                height: 1px;
+                background-color: $primary-dark-purple;
+                bottom: 0;
+                left: 0;
+                position: absolute;
+                opacity: 0;
+                transition: opacity $trans;
+            }
+
+            &:hover,
+            &.active {
+                &:after {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    &--floor-nav {
+        a {
+            display: inline-block;
+            position: relative;
+            padding: 0 0.3rem;
+            font-size: 2.4rem;
+            color: $primary-dark-purple;
+            cursor: pointer;
+            transition: opacity $trans;
+
+            @include mobile {
+                font-size: 2rem;
+                &::before {
+                    content: '';
+                    display: block;
+                    position: absolute;
+                    width: 150%;
+                    height: 150%;
+                    transform: translate(-25%, -25%);
+                }
+            }
+
+            &:after {
+                content: '';
+                display: block;
+                width: 100%;
+                height: 2px;
+                background-color: $primary-dark-purple;
+                bottom: 0;
+                left: 0;
+                position: absolute;
+                opacity: 0;
+                transition: opacity $trans;
+            }
+
+            &:hover {
+                opacity: 0.6;
+            }
+
+            &.active {
+                &:after {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
