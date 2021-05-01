@@ -25,9 +25,41 @@
                     </li>
                     <li class="nav-list__item">
                         <a href="" class="nav-list__cart js-favorites nav-list__cart--empty" style="display:none;" data-request-url="/wp-json/api/wishlist" data-action="syncFavorites"></a>
-                        <a href="/register/" class="nav-list__link nav-list__link--hasUnderline">
+                        @if (!Auth::check())
+                        <a href="#register-form" class="nav-list__link nav-list__link--hasUnderline" data-modal="register-form" onclick="$('#register-form-trigger').click();">
                             Войти
                         </a>
+                            <span class="button button--border button--white-border button--ic" id="register-form-trigger" data-modal="register-form" style="display:none;">
+                               <span class="button__text">Регистрация</span>
+                            </span>
+                        @else
+                            <div class="dropdown dropdown--lang">
+                                <a href="" class="nav-list__cart js-favorites nav-list__cart--empty" style="display:none;" data-request-url="/wp-json/api/wishlist" data-action="syncFavorites"></a><span class="dropdown__label">{{Auth::user()->name}}
+                                    <span class="dropdown__arrow">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 6"><path d="M13.202 0L14 .98 6.908 6 0 .975l.811-.97L6.92 4.447z" fill-rule="nonzero"></path></svg>
+                                    </span>
+                                </span>
+                                <div class="dropdown__content">
+                                    <ul class="nav-list  nav-list--lang">
+                                        <li class="nav-list__item">
+                                            <a href="{{Route('dashboard')}}" class="nav-list__link nav-list__link--hasOpacity">Личный кабинет</a>
+                                        </li>
+                                        <li class="nav-list__item">
+                                            <a href="{{Route('profile')}}" class="nav-list__link nav-list__link--hasOpacity">Профиль</a>
+                                        </li>
+                                        <li class="nav-list__item">
+                                            <a href="{{Route('surveys')}}" class="nav-list__link nav-list__link--hasOpacity">Анкеты</a>
+                                        </li>
+                                        <li class="nav-list__item">
+                                            <a href="{{Route('documents')}}" class="nav-list__link nav-list__link--hasOpacity">Документы</a>
+                                        </li>
+                                        <li class="nav-list__item">
+                                            <a href="{{Route('logout')}}" class="nav-list__link nav-list__link--hasOpacity">Выйти</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        @endif
                     </li>
                 </ul>
                 <div class="navigation__menu">
@@ -52,7 +84,7 @@
                                     <a href="mailto:tgmu@tyumsmu.ru" class="nav-list__link nav-list__link--s nav-list__link--hasOpacity">tgmu@tyumsmu.ru</a>
                                 </li>
                                 <li class="nav-list__item">
-                                    <a href="tel: +370 610 48 799" class="nav-list__link nav-list__link--s nav-list__link--hasOpacity">+7 (3452) 20-21-97</a>
+                                    <a href="tel: +73452202197" class="nav-list__link nav-list__link--s nav-list__link--hasOpacity">+7 (3452) 20-21-97</a>
                                 </li>
                             </ul>
                         </div>
@@ -63,3 +95,119 @@
         </div>
     </div>
 </header>
+<aside data-simple-contact-form data-fade-in class="modal modal--contact-form" id="register-form">
+    <div class="modal__overlay"></div>
+
+    <div class="modal__wrap modal__wrap--max-width">
+        <a href="#" class="modal__close js-close-modal button  button--close">
+            <span class="button__icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 54 54"><g transform="translate(1 1)"><circle cx="26" cy="26" r="26" fill-rule="evenodd" clip-rule="evenodd" fill="#39145d" stroke="#39145d" stroke-width=".7"/><path d="M26 25.1l9.1-9.1.9.9-9.1 9.1 9.1 9.1-.9.9-9.1-9.1-9.1 9.1-.9-.9 9.1-9.1-9.1-9.1.9-.9 9.1 9.1z" fill="#fff"/></g></svg>            </span>
+        </a>
+        <div class="modal__body">
+            <div class="modal__contact-form">
+                <a href="#signup" class="button button--border form-button">
+                    <span class="button__text">Уже есть аккаунт</span>
+                </a>
+                <h3 class="heading heading--dark heading--ms mobile">Зарегистрироваться</h3>
+                <h3 class="heading heading--dark heading--ms desktop">Зарегистрироваться</h3>
+
+                <form data-action="register" data-request-url="/register" class="form" autocomplete="off" id="registration">
+                    @csrf
+                    <div class="contacts__slide">
+                        <div class="form__control form__control--m">
+                            <input id="name" name="first_name" class="form__input" type="text" placeholder="Имя*" required>
+                        </div>
+                        <div class="form__control form__control--m">
+                            <input id="last_name" name="last_name" class="form__input" type="text" placeholder="Фамилия*" required>
+                        </div>
+                        <div class="form__control form__control--m">
+                            <input id="phone" name="phone" class="form__input" type="text" placeholder="Телефон*" required>
+
+                        </div>
+                        <div class="form__control form__control--m">
+                            <input id="email" name="email" class="form__input js-validate-field" type="email" placeholder="Эл. почта*" required>
+
+                        </div>
+
+
+                        <div class="form__control form__control--m">
+                            <input id="password" name="password" class="form__input js-validate-field" type="password" placeholder="Пароль*" required>
+
+                        </div>
+
+
+                        <div class="form__control form__control--m">
+                            <input id="password-confirm" name="password_confirmation" class="form__input js-validate-field" type="password" placeholder="Повторите пароль*" required>
+
+                        </div>
+
+                        <div class="contacts__slide-footer">
+                            <div class="form__group">
+                                <div class="form__control">
+                                    <label class="form-checkbox"><p>Согласен с политикой конфиденциальности</p>
+                                        <input class="js-validate-field" type="checkbox" name="privacy_policy" value="agree">
+                                        <span class="form-checkbox__checkmark"></span>
+                                    </label>
+                                </div>
+
+                            </div>
+
+
+
+                            <button type="submit" class="button button--simple"><span class="button__text">Отправить</span></button>
+
+                        </div>
+
+                    </div>
+
+                </form>
+
+
+                <form data-action="login" data-request-url="/login" class="form hidden" autocomplete="off" id="signup">
+                    @csrf
+                    <div class="contacts__slide">
+                        <div class="form__control form__control--m">
+                            <input id="email_form" name="email" class="form__input js-validate-field" type="email" hiddenLabel="true" placeholder="Эл. почта*" required>
+                        </div>
+
+
+                        <div class="form__control form__control--m">
+                            <input id="password_form" name="password" class="form__input js-validate-field" type="password" placeholder="Пароль*" required>
+                        </div>
+
+                        <div class="contacts__slide-footer">
+                            <button type="submit" class="button button--simple"><span class="button__text">Войти</span></button>
+                        </div>
+
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal__sidebar modal__sidebar--blue">
+                <h3 class="heading heading--dark heading--ms mobile"></h3>
+                <div class="contacts__person">
+                    <ul class="nav-list nav-list--vertical nav-list--contacts">
+                        <li class="nav-list__item">
+                            <div class="text-block text-block--dark text-block--s text-block--fadeOut">
+                                <p>Звоните</p>
+                            </div>
+                            <a href="tel: +73452202197" class="nav-list__link nav-list__link--m nav-list__link--hasOpacity">+7 (3452) 20-21-97</a>
+                        </li>
+                        <li class="nav-list__item">
+                            <div class="text-block text-block--dark text-block--s text-block--fadeOut">
+                                <p>
+                                    Пишите                                </p>
+                            </div>
+                            <a href="mailto:tgmu@tyumsmu.ru" class="nav-list__link nav-list__link--m nav-list__link--hasOpacity">tgmu@tyumsmu.ru</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</aside>
+
+

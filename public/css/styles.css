@@ -578,7 +578,7 @@ h6 {
 }
 
 .nav-list--lang .nav-list__item:not(:last-of-type) {
-    margin-bottom: .5rem
+    margin-bottom: 10px;
 }
 
 .nav-list--lang .nav-list__link {
@@ -722,7 +722,7 @@ h6 {
     left: 100%;
     height: 100%;
     width: 82.5rem;
-    background-color: #39145d;
+    background-color: #155782;
     padding-left: 12rem;
     overflow: auto;
     transition: transform .45s ease-in-out
@@ -944,15 +944,20 @@ h6 {
         position: absolute
     }
 }
-
+.dashboard-icons {
+    margin-top:4rem;
+}
+.dashboard-icons a {
+    margin-right:15px;
+}
 .dropdown--lang .dropdown__label {
     font-size: 1.8rem
 }
 
 .dropdown--lang .dropdown__content {
-    width: 6.5rem;
+    width: 16rem;
     left: -1.5rem;
-    padding: 1.5rem;
+    padding: 2rem;
     background-color: #fff;
     margin-top: 1rem;
     box-shadow: 0 2px 1rem 0 rgba(57, 20, 93, .08)
@@ -1013,7 +1018,9 @@ h6 {
 .swiper__button.hidden {
     display: none
 }
-
+form.hidden {
+    display:none;
+}
 .swiper__pagination-fraction {
     display: inline-block;
     position: absolute;
@@ -1648,7 +1655,12 @@ h6 {
     white-space: nowrap;
     transform: translateZ(0)
 }
-
+.button--form {
+    font-size:18px;
+}
+.modal__body .form-button {
+    margin-bottom:25px;
+}
 .button__icon {
     display: flex;
     align-items: center;
@@ -1931,14 +1943,14 @@ h6 {
 
 .button--onLight svg circle,
 .button--onWhite svg circle {
-    stroke: #39145d;
+    stroke: #155782;
     fill: transparent;
     transition: fill .3s ease-in-out
 }
 
 .button--onLight svg path,
 .button--onWhite svg path {
-    fill: #39145d;
+    fill: #155782;
     transition: fill .3s ease-in-out
 }
 
@@ -1949,7 +1961,7 @@ h6 {
     }
     .button--onLight:hover svg circle,
     .button--onWhite:hover svg circle {
-        fill: #39145d
+        fill: #155782
     }
     .button--onLight:hover svg path,
     .button--onWhite:hover svg path {
@@ -2249,7 +2261,7 @@ h6 {
 }
 
 .details-list__item {
-    max-width: 20rem;
+    max-width: 40rem;
     padding-right: 2.5rem
 }
 
@@ -2542,7 +2554,9 @@ h6 {
 
 .slide--filosofy {
     display: flex;
-    flex-direction: row
+    flex-direction: row;
+    background-size:contain;
+    background-position:center left;
 }
 
 @media only screen and (max-width:767px) {
@@ -2583,7 +2597,7 @@ h6 {
 }
 
 .slide--filosofy .slide__content {
-    background-color: #39145d;
+    background-color: #155782;
     padding: 14rem 0 16rem
 }
 
@@ -4519,7 +4533,7 @@ h6 {
     z-index: 3;
     bottom: 0;
     left: 0;
-    padding: 0 6.7rem 3rem 3rem
+    padding: 0 3rem 3rem 3rem;
 }
 
 @media only screen and (max-width:767px) {
@@ -4530,7 +4544,8 @@ h6 {
 }
 
 .employee__content .text-block p+p {
-    margin-top: 0
+    margin-top: 0;
+    line-height:1.05;
 }
 
 @media only screen and (max-width:767px) {
@@ -4540,8 +4555,8 @@ h6 {
 }
 
 .employee__content .text-block small {
-    opacity: .71;
-    font-size: 1.4rem
+    opacity: .81;
+    font-size: 1.2rem
 }
 
 .cookie {
@@ -5864,7 +5879,7 @@ h6 {
 
 .header--bg-dark-purple {
     position: fixed;
-    background-color: #39145d;
+    background-color: #155782;
     transition: background .3s ease-in-out, transform .45s ease-in-out, height .45s ease-in-out;
     height: 8rem
 }
@@ -6193,7 +6208,7 @@ body.navigation--open .header__burger:hover span:before {
 }
 
 .hero--slider .hero__content {
-    background-color: #39145d
+    background-color: #0476b0
 }
 
 @media only screen and (max-width:767px) {
@@ -6514,7 +6529,7 @@ body.navigation--open .header__burger:hover span:before {
 
 .hero--dark-purple,
 .hero--dark-purple .hero__image-cover {
-    background-color: #39145d
+    background-color: #155782
 }
 
 .hero--dark-purple .scroll-to svg {
@@ -6663,11 +6678,10 @@ body.navigation--open .header__burger:hover span:before {
 }
 
 .about-us__features--l-purple {
-    background-color: #f0f0fb
+    background-color: #f9fbf0
 }
 
 .about-us__features--1 {
-    padding-bottom: 41rem
 }
 
 @media only screen and (max-width:767px) {
@@ -6883,12 +6897,19 @@ body.navigation--open .header__burger:hover span:before {
 }
 
 .news__head {
-    padding-top: 24rem
+    padding-top: 20rem
 }
-
+.press {
+    padding-top:10rem;
+    padding-bottom: 10rem;
+}
 @media only screen and (max-width:767px) {
     .news__head {
         padding-top: 14rem
+    }
+    .press {
+        padding-top:5rem;
+        padding-bottom: 5rem;
     }
 }
 
@@ -6898,7 +6919,7 @@ body.navigation--open .header__burger:hover span:before {
 
 .news--main .news__head,
 .news--single .news__head {
-    background-color: #39145d
+    background-color: #155782
 }
 
 .news--main .news__head .row,
@@ -6932,7 +6953,7 @@ body.navigation--open .header__burger:hover span:before {
 
 .news--main .news__head .js-head-mask,
 .news--single .news__head .js-head-mask {
-    background-color: #39145d
+    background-color: #155782
 }
 
 .news--main .news__head .list,
@@ -7096,7 +7117,7 @@ body.navigation--open .header__burger:hover span:before {
 }
 
 .news--main .news__head {
-    padding-bottom: 20rem
+    padding-bottom: 16rem
 }
 
 @media only screen and (max-width:767px) {
@@ -7963,7 +7984,7 @@ body.navigation--open .header__burger:hover span:before {
     width: calc(100% - 41rem);
     min-height: 100vh;
     background-color: #fff;
-    padding: 11rem 25rem 11rem 10rem;
+    padding: 8rem 25rem 8rem 10rem;
     position: relative
 }
 
@@ -7988,12 +8009,12 @@ body.navigation--open .header__burger:hover span:before {
 }
 
 .modal--contact-form .modal__contact-form .heading--ms {
-    margin-bottom: 9rem
+    margin-bottom: 6rem
 }
 
 @media only screen and (max-width:767px) {
     .modal--contact-form .modal__contact-form .heading--ms {
-        margin-bottom: 6rem
+        margin-bottom: 3rem
     }
 }
 
@@ -9230,7 +9251,7 @@ body.navigation--open .header__burger:hover span:before {
     width: 51rem;
     min-height: 42rem;
     padding: 7rem 6rem 7.5rem;
-    background-color: #39145d;
+    background-color: #155782;
     position: relative;
     z-index: 2;
     margin-top: -29rem;
@@ -9314,7 +9335,8 @@ body.navigation--open .header__burger:hover span:before {
 }
 
 .team__container .employee {
-    margin-right: 6rem
+    margin-right: 6rem;
+    background: #1977a3;
 }
 
 @media only screen and (max-width:767px) {
@@ -9656,10 +9678,15 @@ body.navigation--open .header__burger:hover span:before {
         font-size: 1.4rem
     }
 }
-
+.news .heading--s {
+    font-size: 2.4rem;
+}
 @media only screen and (max-width:767px) {
     .career__ad-content .heading--s {
         font-size: 1.8rem
+    }
+    .news .heading--s {
+        font-size: 1.8rem;
     }
 }
 
@@ -9926,7 +9953,7 @@ body.navigation--open .header__burger:hover span:before {
 .text-page__head {
     padding-top: 24rem;
     padding-bottom: 12rem;
-    background-color: #39145d
+    background-color: #155782
 }
 
 @media only screen and (max-width:767px) {

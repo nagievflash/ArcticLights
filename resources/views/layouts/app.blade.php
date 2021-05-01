@@ -8,6 +8,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
 
     <title>Свет Арктики – проект, направленный на улучшение здоровья и работоспособности жителей Арктической зоны</title>
 
@@ -24,7 +25,6 @@
     </main>
 
     @include('layouts.footer')
-
 </body>
 
 </html>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="ec5acc4d-d90c-4bbb-a1b3-cacee10db7f9" name="Arctic Lights" url="http://193.124.206.209">
+        <fileTransfer host="193.124.206.209" port="22" rootFolder="/var/www/www-root/data/www/light-arctic.ru" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

@@ -14,7 +14,8 @@ class NewsController extends Controller
      */
     public function index()
     {
-        //
+        $posts = Post::all();
+        return view('news.list', compact("posts"));
     }
 
     /**

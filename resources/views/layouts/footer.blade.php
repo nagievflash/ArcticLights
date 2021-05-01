@@ -17,7 +17,7 @@
                             <a href="/partners/" class="nav-list__link nav-list__link--hasOpacity">Партнерам</a>
                         </li>
                         <li class="nav-list__item">
-                            <a href="/register/" class="nav-list__link nav-list__link--hasOpacity">Стать участником</a>
+                            <a href="#" class="nav-list__link nav-list__link--hasOpacity">Стать участником</a>
                         </li>
                         <li class="nav-list__item">
                             <a href="/about/" class="nav-list__link nav-list__link--hasOpacity">О проекте</a>
@@ -77,3 +77,46 @@
 </footer>
 <script data-cfasync="false" src="/js/email-decode.min.js"></script>
 <script type='text/javascript' src='/js/apps.js?ver=5.5.3' id='frontend-js'></script>
+<script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
+<script>
+    $('.form-button').click(function() {
+        let url = $(this).attr('href');
+        if (url == '#signup') {
+            $('#registration').addClass('hidden');
+            $('#signup').removeClass('hidden');
+            $(this).attr('href', '#registration')
+            $(this).find('span').text('Зарегистрироваться')
+            $('.modal__contact-form h3').text('Войти')
+        }
+        else {
+            $('#registration').removeClass('hidden');
+            $('#signup').addClass('hidden');
+            $(this).attr('href', '#signup')
+            $(this).find('span').text('Уже есть аккаунт')
+            $('.modal__contact-form h3').text('Зарегистрироваться')
+        }
+    })
+    $('.form__control.form__control--m').focusin(function() {
+        $(this).addClass("active");
+    });
+    $('.form__control.form__control--m').focusout(function() {
+        $(this).removeClass("active");
+    });
+
+    $('.modal__contact-form form').submit(function(e){
+        e.preventDefault();
+        let url = $(this).data('request-url');
+        let data = $(this).serialize()
+        $.ajax({
+            url: url,
+            method: 'post',
+            data: data,
+            success: function(e) {
+                window.location.href = "/dashboard"
+            }
+        });
+    })
+</script>
