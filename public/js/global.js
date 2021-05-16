@@ -25,7 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
             preloader.show()
             ajaxSend(requestMethod, requestUrl, formData)
                 .then((response) => {
-                    // TODO: notice user if success
                     if (response.success) {
                         const success = document.createElement('div')
                         success.classList.add('form__success')
