@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="text-block text-block--dark">
                     <h3 class="heading heading--dark heading--ms desktop">Настройки профиля</h3>
-                    <form class="form" autocomplete="off" method="POST" action="{{Route('profile')}}">
+                    <form class="form js-ajax-form" autocomplete="off" method="POST" action="{{Route('profile')}}">
                         @csrf
                         <div class="form-radios">
                         </div>
