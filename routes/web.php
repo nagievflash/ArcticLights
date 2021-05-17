@@ -50,6 +50,7 @@ Route::get('/confident', function () {
 Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 Route::get('/dashboard/documents', [App\Http\Controllers\DashboardController::class, 'documents'])->name('documents');
 Route::get('/dashboard/surveys', [App\Http\Controllers\DashboardController::class, 'surveys'])->name('surveys');
+Route::get('/dashboard/surveys/result/{slug?}', [App\Http\Controllers\DashboardController::class, 'surveyResult'])->name('surveyResult');
 Route::get('/dashboard/surveys/{slug}', [App\Http\Controllers\DashboardController::class, 'survey']);
 Route::get('/dashboard/profile', [App\Http\Controllers\DashboardController::class, 'profile'])->name('profile');
 Route::post('/dashboard/profile', [App\Http\Controllers\DashboardController::class, 'saveProfile']);
