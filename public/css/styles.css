@@ -11060,3 +11060,66 @@ body.navigation--open .header__burger:hover span:before {
     transition: transform .1s linear;
     background-color: #39145d
 }
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-row-gap: 15px;
+}
+
+.grid_cards {
+    margin-bottom: 3rem;
+}
+
+@media screen and (min-width: 768px)  {
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+        grid-column-gap: 30px;
+    }
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 1rem 4rem 0 rgba(130, 180, 220, .2);
+    overflow: hidden;
+    border-radius: 1rem;
+}
+
+.card__image {
+    display: block;
+    width: 100%;
+    object-fit: cover;
+}
+
+.card__body {
+    padding: 5px 10px 10px 10px;
+}
+
+.card__title {
+    font-size: 2rem;
+    color: #39145d;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.card__survey {
+    position: relative;
+}
+
+.card__survey_done::before {
+    content: "";
+    position: absolute;
+    display: block;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(130, 180, 220, 0.15);
+}
+
+.text-page__content_surveys .heading {
+    margin-bottom: 2.5rem;
+}
