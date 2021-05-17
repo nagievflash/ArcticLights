@@ -12,7 +12,7 @@
             <div class="row">
                 <div class="text-block text-block--dark">
                     <script src="https://yastatic.net/s3/frontend/forms/_/embed.js"></script>
-                    <iframe src="https://forms.yandex.ru/u/{{$survey->yandex_id}}/?iframe=1" frameborder="0" name="ya-form-{{$survey->yandex_id}}" width="650"></iframe>
+                    <iframe src="https://forms.yandex.ru/u/{{$survey->yandex_id}}/?iframe=1&user_id={{Auth::user()->id}}" frameborder="0" name="ya-form-{{$survey->yandex_id}}" width="650"></iframe>
                 </div>
             </div>
         </div>
