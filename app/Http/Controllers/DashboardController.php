@@ -55,8 +55,12 @@ class DashboardController extends Controller
      */
     public function surveys()
     {
-        $surveys = Survey::all();
-        return view('surveys', compact('surveys'));
+        $id = Auth::user()->id;
+        $oUser = User::findOrFail($id);
+        $aUsersSurveys = $oUser->surveys()->where('result', '>', 0)->get();
+        $aUsersSurveysId = array_column($aUsersSurveys->toArray(), 'id');
+        $surveys = Survey::query()->whereKeyNot($aUsersSurveysId)->get();
+        return view('surveys', compact('surveys', 'aUsersSurveys'));
     }
 
 
@@ -67,8 +71,31 @@ class DashboardController extends Controller
      */
     public function survey($slug)
     {
-        $survey = Survey::where('slug', $slug)->first();
-        return view('survey', compact('survey'));
+        $survey = Survey::where('slug', $slug)->firstOrFail();
+        $sUrlParams = http_build_query([
+            'user_id' => Auth::user()->id,
+            'user_role' => Auth::user()->role->name,
+        ]);
+        return view('survey', compact('survey', 'sUrlParams'));
+    }
+
+    public function surveyResult($slug = null)
+    {
+        if ($slug) {
+            $id = Auth::user()->id;
+            $oUser = User::findOrFail($id);
+            $oSurvey = $oUser->surveys()->where('slug', $slug)->firstOrFail();
+            $aUsersSurveys = $oUser->surveys()->where('result', '>', 0)->get();
+            $aUsersSurveysId = array_column($aUsersSurveys->toArray(), 'id');
+            $aUnresolvedSurveys = Survey::query()->whereKeyNot($aUsersSurveysId)->inRandomOrder()->limit(3)->get();
+            $result = Auth::user()->role->name == 'respondent' ? false : $oSurvey->pivot->result;
+            return view('surveyResult', compact('oSurvey', 'result', 'aUnresolvedSurveys'));
+        } else {
+            $iId = Auth::user()->id;
+            $oUser = User::findOrFail($iId);
+            $oSurvey = $oUser->surveys()->orderByDesc('created_at')->firstOrFail();
+            return redirect(route('surveyResult', ['slug' => $oSurvey->slug]));
+        }
     }
 
     /**
