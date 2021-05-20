@@ -14,7 +14,7 @@
 
     <link rel='stylesheet' id='wp-block-library-css' href='/css/style.min.css' type='text/css' media='all' />
     <link rel='stylesheet' id='frontend-css' href='/css/styles.css' type='text/css' media='all' />
-
+    @yield('assets-css')
 </head>
 <body>
 

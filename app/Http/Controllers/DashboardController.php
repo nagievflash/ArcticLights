@@ -101,26 +101,37 @@ class DashboardController extends Controller
     /**
      * POST для сохранения профиля
      * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\JsonResponse
      */
     public function saveProfile(Request $request)
     {
-
-        $id = Auth::user()->id;
-        $user = User::findOrFail($id);
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-        $user->last_name = $request->input('last_name');
-        $user->phone = $request->input('phone');
-        $user->weight = $request->input('weight');
-        $user->height = $request->input('height');
-        $user->age = $request->input('age');
-        $user->sex = $request->input('sex');
-        $user->birthday = $request->input('birthday');
-        $user->root = $request->input('root');
-        $user->stay = $request->input('stay');
-        $user->save();
-        return redirect()->route('profile');
+        $aValidate = $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'last_name' => 'required',
+            'phone' => 'required|numeric',
+            'weight' => 'required|numeric',
+            'height' => 'required|numeric',
+            'age' => 'required|numeric',
+            'sex' => 'required',
+            'birthday' => 'required|date',
+            'root' => 'required',
+            'stay' => 'required|numeric',
+        ]);
+        try {
+            $id = Auth::user()->id;
+            $user = User::findOrFail($id);
+            $user->update($aValidate);
+            return response()->json([
+                'success' => true,
+                'message' => 'Данные успешно сохранены'
+            ]);
+        } catch (\Illuminate\Database\QueryException $exception) {
+            return response()->json([
+                'success' => false,
+                'message' => $exception->getMessage()
+            ]);
+        }
     }
 
 }
