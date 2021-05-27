@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Employee;
 use App\Models\Post;
 
 class HomeController extends Controller
@@ -23,6 +23,15 @@ class HomeController extends Controller
         $posts = Post::all();
         return view('frontpage', compact("posts"));
 
+    }
+
+    public function getEmployees()
+    {
+        $employees = Employee::query()
+            ->orderBy('sort')
+            ->orderBy('name')
+            ->get();
+        return view('about', compact('employees'));
     }
 
 }
