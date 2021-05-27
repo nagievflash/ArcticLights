@@ -27,9 +27,7 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'frontpage'])->name('frontpage');
-Route::get('/about', function () {
-    return view('about');
-});
+Route::get('/about', [\App\Http\Controllers\HomeController::class, 'getEmployees'])->name('about');
 Route::get('/press', function () {
     return view('press');
 });
