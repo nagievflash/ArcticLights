@@ -57,7 +57,7 @@ class DashboardController extends Controller
     {
         $id = Auth::user()->id;
         $oUser = User::findOrFail($id);
-        $aUsersSurveys = $oUser->surveys()->where('result', '>', 0)->get();
+        $aUsersSurveys = $oUser->surveys()->where('result_id', '>', 0)->get();
         $aUsersSurveysId = array_column($aUsersSurveys->toArray(), 'id');
         $surveys = Survey::query()->whereKeyNot($aUsersSurveysId)->get();
         return view('surveys', compact('surveys', 'aUsersSurveys'));
@@ -79,16 +79,21 @@ class DashboardController extends Controller
         return view('survey', compact('survey', 'sUrlParams'));
     }
 
+    /**
+     * Результат анкеты
+     * @param null $slug
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function surveyResult($slug = null)
     {
         if ($slug) {
             $id = Auth::user()->id;
             $oUser = User::findOrFail($id);
             $oSurvey = $oUser->surveys()->where('slug', $slug)->firstOrFail();
-            $aUsersSurveys = $oUser->surveys()->where('result', '>', 0)->get();
+            $aUsersSurveys = $oUser->surveys()->where('result_id', '>', 0)->get();
             $aUsersSurveysId = array_column($aUsersSurveys->toArray(), 'id');
             $aUnresolvedSurveys = Survey::query()->whereKeyNot($aUsersSurveysId)->inRandomOrder()->limit(3)->get();
-            $result = Auth::user()->role->name == 'respondent' ? false : $oSurvey->pivot->result;
+            $result = Auth::user()->role->name == 'respondent' ? false : $oSurvey->pivot->result_id;
             return view('surveyResult', compact('oSurvey', 'result', 'aUnresolvedSurveys'));
         } else {
             $iId = Auth::user()->id;

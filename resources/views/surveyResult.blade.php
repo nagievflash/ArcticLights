@@ -17,7 +17,7 @@
             @if ($result)
                 <div class="row">
                     <div class="text-block text-block--dark">
-                        <h2 class="heading heading--dark heading--s">Результат «{{$result}}»‎</h2>
+                        <h2 class="heading heading--dark heading--s">Идентификатор ответа «{{$result}}»‎</h2>
                     </div>
                 </div>
             @endif
