@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Survey;
 use App\Models\User;
+use App\Rules\Phone;
 use Illuminate\Http\Request;
-use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
@@ -114,10 +114,10 @@ class DashboardController extends Controller
             'name' => 'required',
             'email' => 'required|email',
             'last_name' => 'required',
-            'phone' => 'required|numeric',
-            'weight' => 'required|numeric',
-            'height' => 'required|numeric',
-            'age' => 'required|numeric',
+            'phone' => ['required', 'string',  new Phone],
+            'weight' => 'required|numeric|min:0',
+            'height' => 'required|numeric|min:0',
+            'age' => 'required|numeric|min:0',
             'sex' => 'required',
             'birthday' => 'required|date',
             'root' => 'required',

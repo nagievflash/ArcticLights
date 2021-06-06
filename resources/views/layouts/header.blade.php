@@ -111,7 +111,7 @@
                 <h3 class="heading heading--dark heading--ms mobile">Зарегистрироваться</h3>
                 <h3 class="heading heading--dark heading--ms desktop">Зарегистрироваться</h3>
 
-                <form data-action="register" data-request-url="/register" class="form" autocomplete="off" id="registration">
+                <form action="{{ Route('register') }}" class="form js-ajax-form" method="POST" autocomplete="off" id="registration">
                     @csrf
                     <div class="contacts__slide">
                         <div class="form__control form__control--m">
@@ -121,23 +121,23 @@
                             <input id="last_name" name="last_name" class="form__input" type="text" placeholder="Фамилия*" required>
                         </div>
                         <div class="form__control form__control--m">
-                            <input id="phone" name="phone" class="form__input" type="text" placeholder="Телефон*" required>
+                            <input id="phone" name="phone" class="form__input" type="text" placeholder="Телефон* +79000000000" required>
 
                         </div>
                         <div class="form__control form__control--m">
-                            <input id="email" name="email" class="form__input js-validate-field" type="email" placeholder="Эл. почта*" required>
-
-                        </div>
-
-
-                        <div class="form__control form__control--m">
-                            <input id="password" name="password" class="form__input js-validate-field" type="password" placeholder="Пароль*" required>
+                            <input id="email" name="email" class="form__input" type="email" placeholder="Эл. почта*" required>
 
                         </div>
 
 
                         <div class="form__control form__control--m">
-                            <input id="password-confirm" name="password_confirmation" class="form__input js-validate-field" type="password" placeholder="Повторите пароль*" required>
+                            <input id="password" name="password" class="form__input" type="password" placeholder="Пароль*" required>
+
+                        </div>
+
+
+                        <div class="form__control form__control--m">
+                            <input id="password-confirm" name="password_confirmation" class="form__input" type="password" placeholder="Повторите пароль*" required>
 
                         </div>
 
@@ -145,7 +145,7 @@
                             <div class="form__group">
                                 <div class="form__control">
                                     <label class="form-checkbox"><p>Согласен с политикой конфиденциальности</p>
-                                        <input class="js-validate-field" type="checkbox" name="privacy_policy" value="agree">
+                                        <input class="" type="checkbox" name="privacy_policy" value="agree">
                                         <span class="form-checkbox__checkmark"></span>
                                     </label>
                                 </div>
@@ -163,16 +163,16 @@
                 </form>
 
 
-                <form data-action="login" data-request-url="/login" class="form hidden" autocomplete="off" id="signup">
+                <form action="{{ Route('login') }}" class="form hidden js-ajax-form" method="POST" autocomplete="off" id="signup">
                     @csrf
                     <div class="contacts__slide">
                         <div class="form__control form__control--m">
-                            <input id="email_form" name="email" class="form__input js-validate-field" type="email" hiddenLabel="true" placeholder="Эл. почта*" required>
+                            <input id="email_form" name="email" class="form__input " type="email" hiddenLabel="true" placeholder="Эл. почта*" required>
                         </div>
 
 
                         <div class="form__control form__control--m">
-                            <input id="password_form" name="password" class="form__input js-validate-field" type="password" placeholder="Пароль*" required>
+                            <input id="password_form" name="password" class="form__input " type="password" placeholder="Пароль*" required>
                         </div>
 
                         <div class="contacts__slide-footer">

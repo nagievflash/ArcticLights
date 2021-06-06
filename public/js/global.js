@@ -26,6 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
             ajaxSend(requestMethod, requestUrl, formData)
                 .then((response) => {
                     if (response.success) {
+                        if (response.url) {
+                            window.location.href = response.url
+                        }
                         const success = document.createElement('div')
                         success.classList.add('form__success')
                         const successIcon = document.createElement('div')
@@ -38,10 +41,16 @@ document.addEventListener('DOMContentLoaded', () => {
                     } else {
                         const errors = response.errors
                         for (let error in errors) {
-                            const formError = document.createElement('span')
-                            formError.classList.add('form__error-message')
-                            formError.textContent = response.message
-                            _this.querySelector(`[name="${error}"]`).after(formError)
+                            for (let messageIndex = 0; messageIndex < errors[error].length; messageIndex++) {
+                                const formError = document.createElement('span')
+                                formError.classList.add('form__error-message')
+                                formError.innerHTML = errors[error][messageIndex] + '<br>';
+                                if(_this.querySelector(`[name="${error}"]`)) {
+                                    _this.querySelector(`[name="${error}"]`).after(formError)
+                                } else {
+                                    _this.before(formError)
+                                }
+                            }
                         }
                     }
                 })
