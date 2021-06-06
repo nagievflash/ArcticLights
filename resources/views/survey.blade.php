@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app', ['sTitle' => $survey->name])
 
 @section('content')
     <section class="text-page dashboard">

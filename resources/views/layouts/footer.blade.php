@@ -108,17 +108,4 @@
         $(this).removeClass("active");
     });
 
-    $('.modal__contact-form form').submit(function(e){
-        e.preventDefault();
-        let url = $(this).data('request-url');
-        let data = $(this).serialize()
-        $.ajax({
-            url: url,
-            method: 'post',
-            data: data,
-            success: function(e) {
-                window.location.href = "/dashboard"
-            }
-        });
-    })
 </script>

@@ -16,7 +16,9 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+Route::get('/login', '\App\Http\Controllers\Auth\LoginController@login')->name('login');
+Route::get('/register', '\App\Http\Controllers\Auth\LoginController@register')->name('register');
 
 Route::get('/news/{slug}', [App\Http\Controllers\NewsController::class, 'show']);
 Route::get('/news/', [App\Http\Controllers\NewsController::class, 'index'])->name('news');
@@ -27,9 +29,7 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'frontpage'])->name('frontpage');
-Route::get('/about', function () {
-    return view('about');
-});
+Route::get('/about', [\App\Http\Controllers\HomeController::class, 'getEmployees'])->name('about');
 Route::get('/press', function () {
     return view('press');
 });

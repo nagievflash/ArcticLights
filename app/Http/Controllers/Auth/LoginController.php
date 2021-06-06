@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Lang;
 
 class LoginController extends Controller
 {
@@ -40,7 +41,38 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function logout(Request $request) {
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     */
+    public function login(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
+            return response()->json([
+                'success' => true,
+                'url' => route('dashboard'),
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'errors' => [
+                    'form' => [
+                        Lang::get('auth.failed')
+                    ]
+                ]
+            ]);
+        }
+    }
+
+    public function logout(Request $request)
+    {
         Auth::logout();
         return redirect('/');
     }

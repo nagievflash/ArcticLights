@@ -26,7 +26,7 @@
                     </div>
                 </div>
             @endif
-            @if($aUsersSurveys)
+            @if(!$aUsersSurveys->isEmpty())
                 <div class="row">
                     <h2 class="heading heading--dark heading--s">Завершённые</h2>
                     <div class="grid gird_cards">
