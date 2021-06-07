@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Document;
 use App\Models\Survey;
 use App\Models\User;
 use App\Rules\Phone;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -46,7 +48,13 @@ class DashboardController extends Controller
      */
     public function documents()
     {
-        return view('documents');
+        $aDocuments = Document::all();
+        foreach ($aDocuments as &$oDocument) {
+            $sFilePath = asset('storage/' . current(json_decode($oDocument->url, true))['download_link']);
+            $oDocument->url = $sFilePath;
+            $oDocument->extension = pathinfo($sFilePath, PATHINFO_EXTENSION);
+        }
+        return view('documents', compact('aDocuments'));
     }
 
     /**
