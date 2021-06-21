@@ -48,7 +48,7 @@
                                             <a href="{{Route('profile')}}" class="nav-list__link nav-list__link--hasOpacity">Профиль</a>
                                         </li>
                                         <li class="nav-list__item">
-                                            <a href="{{Route('surveys')}}" class="nav-list__link nav-list__link--hasOpacity">Анкеты</a>
+                                            <a href="{{Route('surveys')}}" class="nav-list__link nav-list__link--hasOpacity">Опросники</a>
                                         </li>
                                         <li class="nav-list__item">
                                             <a href="{{Route('documents')}}" class="nav-list__link nav-list__link--hasOpacity">Документы</a>

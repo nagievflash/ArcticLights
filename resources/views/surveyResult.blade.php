@@ -11,7 +11,7 @@
         <div class="text-page__content text-page__content_surveys">
             <div class="row">
                 <div class="text-block text-block--dark">
-                    <h2 class="heading heading--dark heading--s">Спасибо, что ответили на анкету «{{$oSurvey->name}}»‎</h2>
+                    <h2 class="heading heading--dark heading--s">Спасибо, что ответили на опросник «{{$oSurvey->name}}»‎</h2>
                 </div>
             </div>
             @if ($result)

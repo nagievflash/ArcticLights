@@ -3,7 +3,7 @@
     <section class="text-page dashboard">
         <div class="text-page__head dashboard__header">
             <div class="row">
-                <h1 class="heading heading--white heading--l">Список анкет</h1>
+                <h1 class="heading heading--white heading--l">Список опросников</h1>
                 <div class="js-head-mask"></div>
             </div>
         </div>
