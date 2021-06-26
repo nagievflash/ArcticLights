@@ -16,9 +16,11 @@
                         <li class="nav-list__item">
                             <a href="/partners/" class="nav-list__link nav-list__link--hasOpacity">Партнерам</a>
                         </li>
-                        <li class="nav-list__item">
-                            <a href="#" class="nav-list__link nav-list__link--hasOpacity">Стать участником</a>
-                        </li>
+                        @if (!Auth::check())
+                            <li class="nav-list__item">
+                                <a href="#" class="nav-list__link nav-list__link--hasOpacity" onclick="$('#register-form-trigger').click();">Стать участником исследования</a>
+                            </li>
+                        @endif
                         <li class="nav-list__item">
                             <a href="/about/" class="nav-list__link nav-list__link--hasOpacity">О проекте</a>
                         </li>

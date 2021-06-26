@@ -61,6 +61,9 @@
                             <p>Проект ученых Тюменского государственного медицинского университета получивший грант в размере 150 миллионов рублей по итогам конкурса мегагрантов на государственную поддержку исследований в рамках развития межрегионального Западно-Сибирского научно-образовательного центра.</p>
                         </div>
                         <a href="/about" class="button button--border"><span class="button__text">Подробнее о проекте</span></a>
+                        @if (!Auth::check())
+                            <a href="#register-form" class="button button--border js-invite-link" onclick="$('#register-form-trigger').click();"><span class="button__text">Стать участником исследования</span></a>
+                        @endif
                     </div>
                     <div class="about-us__head-image">
                         <img loading="lazy" src="/images/science.jpg" alt="">
@@ -88,7 +91,7 @@
                     <li class="about-us__feature">
                         <div class="text-block text-block--s text-block--dark">
                             <p><span>более 1&nbsp;500 </span>
-                            <p>участников эксперимента</p>
+                            <p>участников исследования</p>
                             <p></p>
                         </div>
                     </li>
@@ -118,6 +121,9 @@
                     <p>Большинство предлагаемых световых решений не имеют научного обоснования положительного влияния на здоровье и качество жизни человека. На основе исследований команда ученых Тюменского ГМУ разработает алгоритм, в камках которого будет проведен мониторинг суточной динамики физиологических параметров с учетом цикла сна и бодрствования, производительности и показателей здоровья. Параметры будут измерены при помощи дистанционных гаджетов в реальных условиях жизни в течении года.</p>
                 </div>
                 <a href="/about/" class="button button--border"><span class="button__text">Подробнее о проекте</span></a>
+                @if (!Auth::check())
+                    <a href="#register-form" class="button button--border js-invite-link" onclick="$('#register-form-trigger').click();"><span class="button__text">Стать участником исследования</span></a>
+                @endif
             </div>
         </article>
     </section>

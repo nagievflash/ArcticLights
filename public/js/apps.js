@@ -545,122 +545,19 @@
     n(22);
     var c = function() {
         function t(t, e) {
-            this.employeeForm = e, this.form = "string" == typeof t ? document.querySelector(t) : t, this.form && (this.submitButton = this.form.querySelector('button[type="submit"]'), this.initEventsListeners(), this.initTextareaAutosize(), this.initApi())
         }
         return t.prototype.onFormSubmit = function(t) {
-            return i(this, void 0, void 0, (function() {
-                var e, n, i;
-                return r(this, (function(r) {
-                    switch (r.label) {
-                        case 0:
-                            return t.preventDefault(), e = this.form.querySelectorAll("input[name], textarea[name]"), this.validate(e) ? (this.disableFormSubmit(), n = this.getFormData(e), [4, this.api.save(n)]) : [3, 2];
-                        case 1:
-                            i = r.sent(), this.validateResponse(i), r.label = 2;
-                        case 2:
-                            return [2]
-                    }
-                }))
-            }))
         }, t.prototype.getFormData = function(t) {
-            var e = {};
-            return t.forEach((function(t) {
-                var n = t.getAttribute("name");
-                switch (t.type) {
-                    case "checkbox":
-                        e[n] = t.checked ? 1 : 0;
-                        break;
-                    default:
-                        e[n] = t.value
-                }
-            })), e
-        }, t.prototype.validateResponse = function(t) {
-            var e = this;
-            if (this.form.querySelectorAll(".form__error-message").forEach((function(t) {
-                t.parentNode.removeChild(t)
-            })), "warning" === t.status) this.enableFormSubmit(), this.form.insertAdjacentHTML("beforeend", '<div class="form__error-message"><p>' + t.message + "</p></div>"), t.fields.forEach((function(t) {
-                e.toggleErrors(t)
-            }));
-            else if ("success" === t.status) {
-                this.showSuccessMessage(t.message);
-                var n = this.submitButton.dataset,
-                    i = n.trackingLabel,
-                    r = n.trackingCategory,
-                    o = n.trackingAction;
-                l.trackFormSubmit(r, o, i)
-            } else this.enableFormSubmit(), alert("Ошибка при отправке формы. Проверьте введенные данные и повторите еще раз.")
-        }, t.prototype.disableFormSubmit = function() {
-            this.submitButton.classList.add("button--isDisabled")
-        }, t.prototype.enableFormSubmit = function() {
-            this.submitButton.classList.remove("button--isDisabled")
-        }, t.prototype.showSuccessMessage = function(t) {
-            var e = this.form.parentElement;
-            if (e.innerHTML = "", e.insertAdjacentHTML("beforeend", '\n        <div class="form__success">\n            <div class="form__success-message">\n                <span class="form__success-icon"></span> \n                <h4 class="heading heading--dark heading--xs">' + t + "</h4>\n            </div>\n        </div>\n        "), !this.employeeForm) {
-                var n = e.closest(".modal");
-                animateScrollTo(0, {
-                    speed: 150,
-                    elementToScroll: null != n ? n : window
-                })
-            }
         }, t.prototype.validate = function(t) {
-            var e = this,
-                n = [];
-            return t.forEach((function(t) {
-                if (t.classList.contains("js-validate-field")) switch (t.type) {
-                    case "text":
-                    case "textarea":
-                        n.push(s.validateEmpty(t));
-                        break;
-                    case "email":
-                        n.push(s.validateEmail(t));
-                        break;
-                    case "checkbox":
-                        n.push(s.validateCheckbox(t))
-                }
-            })), n.forEach((function(t) {
-                e.toggleErrors(t)
-            })), !n.length || !n.some((function(t) {
-                return !1 === t.valid
-            }))
         }, t.prototype.toggleErrors = function(t) {
-            var e = this.form.querySelector('[name="' + t.field + '"]');
-            e && (t.valid ? this.removeErrorClass(e) : this.addErrorClass(e))
         }, t.prototype.addErrorClass = function(t) {
-            t.closest(".form__control").classList.add("notValid")
         }, t.prototype.removeErrorClass = function(t) {
-            t.closest(".form__control").classList.remove("notValid")
         }, t.prototype.initApi = function() {
-            var t = this.form.dataset,
-                e = t.action,
-                n = t.requestUrl;
-            this.api = new a.default(n, e)
         }, t.prototype.initEventsListeners = function() {
-            var t = this;
-            this.form.querySelectorAll("input, textarea").forEach((function(e) {
-                e.addEventListener("focus", t.onElementFocus.bind(t)), e.addEventListener("blur", t.onElementBlur.bind(t))
-            })), this.form.addEventListener("submit", this.onFormSubmit.bind(this))
         }, t.prototype.initTextareaAutosize = function() {
-            var t = this.form.querySelectorAll("textarea");
-            o(t)
         }, t.prototype.onElementFocus = function(t) {
-            t.target.parentElement.classList.add("active")
         }, t.prototype.onElementBlur = function(t) {
-            var e = t.target;
-            e.value || e.parentElement.classList.remove("active")
         }, t.prototype.updatefavorites = function() {
-            var t = this.form.querySelector("[data-favorites-list]");
-            t && (t.innerHTML = "", document.querySelectorAll("[data-favorites-card]").forEach((function(e) {
-                var n = e.dataset,
-                    i = n.apartmentNo,
-                    r = n.postId,
-                    o = ' \n                    <label class="filter__button filter__button--dark filter__button--fill-on-hover">\n                        <input type="checkbox" name="apartment_' + r + '" value="' + r + '" checked="checked">\n                        <span class="filter__checkmark">' + i + '\n                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 9 9"><path  d="M4.35 3.532L7.88 0l.788.787L5.136 4.32 9 8.183 8.183 9 4.319 5.136.787 8.668 0 7.881l3.532-3.532L0 .817.817 0 4.35 3.532z"/></svg>\n                        </span>\n                    </label>\n                ',
-                    a = document.createElement("LI");
-                a.classList.add("list__item"), a.innerHTML = o, a.querySelector("input").addEventListener("change", (function(t) {
-                    var e = t.target.parentElement;
-                    e.classList.add("hide"), setTimeout((function() {
-                        e.parentElement.parentElement.removeChild(e.parentElement)
-                    }), 300)
-                })), t.insertAdjacentElement("beforeend", a)
-            })))
         }, t
     }();
     e.default = c
