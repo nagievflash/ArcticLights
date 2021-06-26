@@ -63,7 +63,7 @@
                     <li class="about-us__feature">
                         <div class="text-block text-block--s text-block--dark">
                             <p><span>более 1&nbsp;500 </span>
-                            <p>участников эксперимента</p>
+                            <p>участников исследования</p>
                             <p></p>
                         </div>
                     </li>

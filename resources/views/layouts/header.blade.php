@@ -48,7 +48,7 @@
                                             <a href="{{Route('profile')}}" class="nav-list__link nav-list__link--hasOpacity">Профиль</a>
                                         </li>
                                         <li class="nav-list__item">
-                                            <a href="{{Route('surveys')}}" class="nav-list__link nav-list__link--hasOpacity">Анкеты</a>
+                                            <a href="{{Route('surveys')}}" class="nav-list__link nav-list__link--hasOpacity">Опросники</a>
                                         </li>
                                         <li class="nav-list__item">
                                             <a href="{{Route('documents')}}" class="nav-list__link nav-list__link--hasOpacity">Документы</a>
@@ -145,7 +145,7 @@
                             <div class="form__group">
                                 <div class="form__control">
                                     <label class="form-checkbox"><p>Согласен с политикой конфиденциальности</p>
-                                        <input class="" type="checkbox" name="privacy_policy" value="agree">
+                                        <input class="" type="checkbox" name="privacy_policy" value="agree" required>
                                         <span class="form-checkbox__checkmark"></span>
                                     </label>
                                 </div>

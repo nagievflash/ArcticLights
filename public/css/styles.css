@@ -5889,7 +5889,7 @@ form.hidden {
 }
 
 @media only screen and (max-width:767px) {
-    .header .nav-list--horizontal .nav-list__item:not(:nth-last-child(-n+2)) {
+    .header .nav-list--horizontal>.nav-list__item:not(:nth-last-child(1)) {
         display: none
     }
 }
