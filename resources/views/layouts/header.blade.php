@@ -145,7 +145,7 @@
                             <div class="form__group">
                                 <div class="form__control">
                                     <label class="form-checkbox"><p>Согласен с политикой конфиденциальности</p>
-                                        <input class="" type="checkbox" name="privacy_policy" value="agree">
+                                        <input class="" type="checkbox" name="privacy_policy" value="agree" required>
                                         <span class="form-checkbox__checkmark"></span>
                                     </label>
                                 </div>

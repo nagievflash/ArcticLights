@@ -1,5 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
     const forms = document.querySelectorAll('.js-ajax-form')
+
+    /**
+     * @param requestMethod
+     * @param requestUrl
+     * @param formData
+     * @returns {Promise<any>}
+     */
     const ajaxSend = async (requestMethod, requestUrl, formData) => {
         const fetchResponse = await fetch(requestUrl, {
             method: requestMethod,
@@ -11,6 +18,43 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         return await fetchResponse.json()
     }
+
+    /**
+     *
+     * @param response
+     * @param form event-object
+     */
+    const showAjaxError = (response, form) => {
+        if (response.success) {
+            if (response.url) {
+                window.location.href = response.url
+            }
+            const success = document.createElement('div')
+            success.classList.add('form__success')
+            const successIcon = document.createElement('div')
+            successIcon.classList.add('form__success-icon')
+            success.appendChild(successIcon)
+            form.prepend(success)
+            setTimeout((success) => {
+                success.remove();
+            }, 2000, success)
+        } else {
+            const errors = response.errors
+            for (let error in errors) {
+                for (let messageIndex = 0; messageIndex < errors[error].length; messageIndex++) {
+                    const formError = document.createElement('span')
+                    formError.classList.add('form__error-message')
+                    formError.innerHTML = errors[error][messageIndex] + '<br>';
+                    if(form.querySelector(`[name="${error}"]`)) {
+                        form.querySelector(`[name="${error}"]`).after(formError)
+                    } else {
+                        form.prepend(formError)
+                    }
+                }
+            }
+        }
+    }
+
     forms.forEach((form) => {
         form.addEventListener('submit', function (e) {
             e.preventDefault()
@@ -24,36 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             preloader.show()
             ajaxSend(requestMethod, requestUrl, formData)
-                .then((response) => {
-                    if (response.success) {
-                        if (response.url) {
-                            window.location.href = response.url
-                        }
-                        const success = document.createElement('div')
-                        success.classList.add('form__success')
-                        const successIcon = document.createElement('div')
-                        successIcon.classList.add('form__success-icon')
-                        success.appendChild(successIcon)
-                        _this.prepend(success)
-                        setTimeout((success) => {
-                            success.remove();
-                        }, 2000, success)
-                    } else {
-                        const errors = response.errors
-                        for (let error in errors) {
-                            for (let messageIndex = 0; messageIndex < errors[error].length; messageIndex++) {
-                                const formError = document.createElement('span')
-                                formError.classList.add('form__error-message')
-                                formError.innerHTML = errors[error][messageIndex] + '<br>';
-                                if(_this.querySelector(`[name="${error}"]`)) {
-                                    _this.querySelector(`[name="${error}"]`).after(formError)
-                                } else {
-                                    _this.before(formError)
-                                }
-                            }
-                        }
-                    }
-                })
+                .then((response) => {showAjaxError(response, _this)})
                 .finally(() => {
                     preloader.remove()
                 })
