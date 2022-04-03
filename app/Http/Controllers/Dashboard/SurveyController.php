@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Survey;
-use App\Models\User;
+
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 
 class SurveyController extends Controller
@@ -17,52 +20,57 @@ class SurveyController extends Controller
 
     /**
      * Surveys list
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      */
     public function index()
     {
-        $iUserId = Auth::user()->id;
-        $aIncompleteSurveys = Survey::getIncomplete($iUserId);
-        $aCompleteSurveys = Survey::getComplete($iUserId);
+        $aIncompleteSurveys = Survey::getIncomplete(Auth::id());
+        $aCompleteSurveys = Survey::getComplete(Auth::id());
         return view('surveys.list', compact('aIncompleteSurveys', 'aCompleteSurveys'));
     }
 
     /**
      * Survey single
-     * @param $sSlug
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @param Survey $survey
+     * @return Application|Factory|View
      */
-    public function show($sSlug)
+    public function show(Survey $survey)
     {
-        $oSurvey = Survey::query()->where('slug', $sSlug)->firstOrFail();
         $sUrlParams = http_build_query([
-            'user_id' => Auth::user()->id,
+            'user_id' => Auth::id(),
             'user_role' => Auth::user()->role->name,
         ]);
-        return view('surveys.single', compact('oSurvey', 'sUrlParams'));
+        return view('surveys.single', ['oSurvey' => $survey, 'sUrlParams'=> $sUrlParams]);
     }
 
     /**
      * Survey result
-     * @param string $sSlug survey slug
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @param Survey $survey
+     * @return Application|Factory|View
      */
-    public function showResult($sSlug = null)
+    public function showSingleResult(Survey $survey)
     {
-        if ($sSlug) {
-            $iUserId = Auth::user()->id;
-            $oUser = User::query()->findOrFail($iUserId);
-            $oSurvey = $oUser->surveys()->where('slug', $sSlug)->firstOrFail();
-            $aUsersSurveys = $oUser->surveys()->where('result_id', '>', 0)->get();
-            $aUsersSurveysId = array_column($aUsersSurveys->toArray(), 'id');
-            $aUnresolvedSurveys = Survey::query()->whereKeyNot($aUsersSurveysId)->inRandomOrder()->limit(3)->get();
-            $result = Auth::user()->role->name == 'respondent' ? false : $oSurvey->pivot->result_id;
-            return view('surveys.single.result', compact('oSurvey', 'result', 'aUnresolvedSurveys'));
-        } else {
-            $iUserId = Auth::user()->id;
-            $oUser = User::query()->findOrFail($iUserId);
-            $oSurvey = $oUser->surveys()->orderByDesc('created_at')->firstOrFail();
-            return redirect(route('surveyResult', ['slug' => $oSurvey->slug]));
-        }
+        $oUsersSurveysCollection = Auth::user()
+            ->surveys()
+            ->where('result_id', '>', 0)
+            ->select(['id'])
+            ->get();
+        $oUsersSurveysId = $oUsersSurveysCollection->pluck('id');
+        $oUnresolvedSurveysCollection = Survey::query()
+            ->whereKeyNot($oUsersSurveysId->all())
+            ->inRandomOrder()
+            ->limit(3)
+            ->get();
+        $result = Auth::user()->role->name == 'respondent' ? false : $survey->result_id;
+        return view('surveys.result.single', compact('oSurvey', 'result', 'oUnresolvedSurveysCollection'));
+    }
+
+    /**
+     * @return Application|Factory|View
+     */
+    public function showIndexResult()
+    {
+        $oSurveysCollection = Survey::getComplete(Auth::id());
+        return view('surveys.result.list', compact('oSurveysCollection'));
     }
 }

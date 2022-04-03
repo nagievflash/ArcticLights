@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['sTitle' => __('dashboard.profile-title')])
+@extends('layouts.dashboard', ['title' => __('dashboard.profile-title')])
 
 @section('page-title', __('dashboard.profile-title'))
 

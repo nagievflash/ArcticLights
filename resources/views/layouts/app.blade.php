@@ -10,8 +10,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" type="image/png" href="/images/favicon.png" />
 
-    <title>@isset($sTitle)
-            {{ $sTitle }} |
+    <title>@isset($title)
+            {{ $title }} |
         @endisset
         {{ config('app.name') }}</title>
 
