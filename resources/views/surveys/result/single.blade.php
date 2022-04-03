@@ -8,7 +8,7 @@
             <div class="text-block text-block--dark">
                 <h2 class="heading heading--dark heading--s">
                     Спасибо, что ответили на опросник «{{$oSurvey->name}}»
-                ‎</h2>
+                    ‎</h2>
             </div>
         </div>
         @if ($result)
@@ -18,11 +18,11 @@
                 </div>
             </div>
         @endif
-        @if ($aUnresolvedSurveys)
+        @if ($oUnresolvedSurveysCollection)
             <div class="row">
                 <h2 class="heading heading--dark heading--s">Остались неотвеченные</h2>
                 <div class="grid grid_cards">
-                    @foreach ($aUnresolvedSurveys as $survey)
+                    @foreach ($oUnresolvedSurveysCollection as $survey)
                         <a class="card card__survey @if ($survey->result) card__survey_done @endif"
                            href="/dashboard/surveys/{{$survey->slug}}">
                             @if ($survey->image)

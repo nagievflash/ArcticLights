@@ -3,11 +3,15 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserProfileRequest;
 use App\Models\Document;
+use App\Models\Survey;
 use App\Models\User;
-use App\Rules\Phone;
 
-use Illuminate\Http\Request;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
@@ -25,17 +29,23 @@ class DashboardController extends Controller
 
     /**
      * Главная страница личного кабинета.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return Application|Factory|View
      */
     public function index()
     {
-        return view('dashboard.home');
+        if (Auth::user()->hasRole('admin')) {
+            $oUserSurveyCollection = User::query()
+                ->has('surveys', '>=', Survey::all()->count() - 2)
+                ->where('role_id', '!=', 1)
+                ->with('surveys')
+                ->get();
+        }
+        return view('dashboard.home', compact('oUserSurveyCollection'));
     }
 
     /**
      * Страница редактирования профиля
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      */
     public function profile()
     {
@@ -44,7 +54,7 @@ class DashboardController extends Controller
 
     /**
      * Список документов
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     * @return Application|Factory|View
      */
     public function documents()
     {
@@ -60,38 +70,20 @@ class DashboardController extends Controller
 
     /**
      * POST для сохранения профиля
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @param UserProfileRequest $oRequest
+     * @return JsonResponse
      */
-    public function saveProfile(Request $request)
+    public function saveProfile(UserProfileRequest $oRequest)
     {
-        $aValidate = $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-            'last_name' => 'required',
-            'phone' => ['required', 'string',  new Phone],
-            'weight' => 'required|numeric|min:0',
-            'height' => 'required|numeric|min:0',
-            'age' => 'required|numeric|min:0',
-            'sex' => 'required',
-            'birthday' => 'required|date',
-            'root' => 'required',
-            'stay' => 'required|numeric',
-        ]);
-        try {
-            $id = Auth::user()->id;
-            $user = User::findOrFail($id);
-            $user->update($aValidate);
-            return response()->json([
+        return Auth::user()->update($oRequest->validated()) ?
+            response()->json([
                 'success' => true,
                 'message' => 'Данные успешно сохранены'
+            ])
+            : response()->json([
+                'success' => true,
+                'message' => 'При обновлении данных произошла ошибка'
             ]);
-        } catch (\Illuminate\Database\QueryException $exception) {
-            return response()->json([
-                'success' => false,
-                'message' => $exception->getMessage()
-            ]);
-        }
     }
 
 }

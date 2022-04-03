@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 'Accept': 'application/json',
                 'X-CSRF-TOKEN': getCSRFToken()
             },
-            body: formData
+            body: formData,
         })
         return await fetchResponse.json()
     }
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
      * @param response
      * @param form event-object
      */
-    const showAjaxError = (response, form) => {
+    const handleAjaxResponse = (response, form) => {
         if (response.success) {
             if (response.url) {
                 window.location.href = response.url
@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             preloader.show()
             ajaxSend(requestMethod, requestUrl, formData)
-                .then((response) => {showAjaxError(response, _this)})
+                .then((response) => {handleAjaxResponse(response, _this)})
                 .finally(() => {
                     preloader.remove()
                 })

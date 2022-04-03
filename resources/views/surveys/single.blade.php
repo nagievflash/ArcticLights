@@ -1,4 +1,4 @@
-@extends('layouts.dashboard', ['sTitle' => $oSurvey->name])
+@extends('layouts.dashboard', ['title' => $oSurvey->name])
 
 @section('page-title', $oSurvey->name)
 

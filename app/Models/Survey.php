@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,13 +12,25 @@ class Survey extends Model
     use HasFactory;
     protected $guarded = [];
 
-    public static function getIncomplete($iUserId)
+    public function getRouteKeyName()
     {
-        $aUsersSurveys = static::getComplete($iUserId);
-        $aUsersSurveysId = array_column($aUsersSurveys->toArray(), 'id');
-        return Survey::query()->whereKeyNot($aUsersSurveysId)->get();
+        return 'slug';
     }
 
+    /**
+     * @param $iUserId
+     * @return Builder[]|Collection
+     */
+    public static function getIncomplete($iUserId)
+    {
+        $oUsersSurveys = static::getComplete($iUserId);
+        return Survey::query()->whereKeyNot($oUsersSurveys->pluck('id')->all())->get();
+    }
+
+    /**
+     * @param $iUserId
+     * @return mixed
+     */
     public static function getComplete($iUserId)
     {
         $oUser = User::findOrFail($iUserId);
