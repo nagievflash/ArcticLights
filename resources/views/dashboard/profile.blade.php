@@ -60,10 +60,11 @@
                             </div>
 
                             <div class="form__control form__control--m">
-                                <label class="form-checkbox"><p>Являюсь кореным жителем Арктики</p>
-                                    <input type="hidden" name="root" value="Нет">
-                                    <input type="checkbox" name="root" value="Да"
-                                           @if (Auth::user()->root == 'Да') checked @endif>
+                                <label class="form-checkbox">
+                                    <p>Являюсь кореным жителем Арктики</p>
+                                    <input type="hidden" name="root" value="0">
+                                    <input type="checkbox" name="root" value="1"
+                                           @if (Auth::user()->root == true) checked @endif>
                                     <span class="form-checkbox__checkmark"></span>
                                 </label>
                             </div>

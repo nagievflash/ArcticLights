@@ -23,9 +23,9 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
-Route::get('/login', [LoginController::class, 'login'])->name('login');
-Route::get('/register', [LoginController::class, 'register'])->name('register');
+//Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+//Route::get('/login', [LoginController::class, 'login'])->name('login');
+//Route::get('/register', [LoginController::class, 'register'])->name('register');
 
 Route::get('/news/{post}', [NewsController::class, 'show']);
 Route::get('/news/', [NewsController::class, 'index'])->name('news');
@@ -67,3 +67,6 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
         });
     });
 });
+
+Route::post('/surveys/obtainResult', [SurveyController::class, 'obtainResult'])->middleware("auth")->name('obtainResult');
+
