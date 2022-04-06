@@ -68,5 +68,5 @@ Route::group(['prefix' => 'dashboard', 'middleware' => 'auth'], function () {
     });
 });
 
-Route::post('/surveys/obtainResult', [SurveyController::class, 'obtainResult'])->middleware("auth")->name('obtainResult');
+Route::post('/surveys/obtainResult', [SurveyController::class, 'obtainResult'])->middleware('admin')->name('obtainResult');
 
