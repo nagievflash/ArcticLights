@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Dashboard\Admin\AdminDashboardController;
 use App\Http\Requests\UserProfileRequest;
 use App\Models\Document;
-use App\Models\Survey;
-use App\Models\User;
-
+use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -29,18 +28,16 @@ class DashboardController extends Controller
 
     /**
      * Главная страница личного кабинета.
+     * TODO: make it better
      * @return Application|Factory|View
+     * @throws BindingResolutionException
      */
     public function index()
     {
         if (Auth::user()->hasRole('admin')) {
-            $oUserSurveyCollection = User::query()
-                ->has('surveys', '>=', Survey::all()->count() - 2)
-                ->where('role_id', '!=', 1)
-                ->with('surveys')
-                ->get();
+            return app()->make(AdminDashboardController::class)->index();
         }
-        return view('dashboard.home', compact('oUserSurveyCollection'));
+        return view('dashboard.home');
     }
 
     /**
